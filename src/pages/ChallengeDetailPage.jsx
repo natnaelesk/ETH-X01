@@ -129,12 +129,17 @@ const ChallengeDetailsPage = () => {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <SubmissionStatus status={submissionStatus} />
-      <h1 className="text-4xl font-bold mb-2 text-primary">
+      <div className="">
+        <h1 className="lg:text-4xl text-3xl font-bold mb-2 text-primary">
         {challenge.patternTitle} - {challenge.dayTitle}
       </h1>
-      <p className="text-lg mb-4 text-light">{challenge.shortDescription}</p>
-      <p className="text-base text-secondary mb-6">{challenge.longDescription}</p>
+      
+      <p className="text-base text-light mt-6">{challenge.longDescription}</p>
+      <hr className="my-3 text-secondary" />
+      <p className="text-sm text-secondary mb-4 text-light">{challenge.shortDescription}</p>
 
+      </div>
+      
       <div className="space-y-6">
         {challenge.questions?.map((q) => {
           const userSubmitted = submissions.some(
@@ -148,27 +153,30 @@ const ChallengeDetailsPage = () => {
                   href={q.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-800 font-medium"
+                  className="text-light underline underline-offset-4 decoration-blue-500 font-medium"
                 >
                   {q.name}
                 </a>
-                <button
-                  className={`font-semibold ${
-                    userSubmitted
-                      ? "text-gray-400 cursor-not-allowed"
-                      : "text-accent"
-                  }`}
-                  onClick={() => {
-                    if (!userSubmitted) handleCheck(q.name);
-                  }}
-                  disabled={userSubmitted}
-                >
-                  {userSubmitted
-                    ? "Submitted"
-                    : answers[q.name]?.showInput
-                    ? "Cancel"
-                    : "Mark as Done"}
-                </button>
+                <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      disabled={userSubmitted}
+                      checked={answers[q.name]?.showInput || false}
+                      onChange={() => handleCheck(q.name)}
+                      className="form-checkbox text-accent w-5 h-5 accent-green-500"
+                    />
+                    <span className={`font-semibold ${
+                      userSubmitted ? "text-gray-400" : "text-accent"
+                    }`}>
+                      {userSubmitted
+                        ? "Submitted"
+                        : answers[q.name]?.showInput
+                        ? "cancel"
+                        : ""}
+                    </span>
+                  </label>
+
+
               </div>
 
               {answers[q.name]?.showInput && !userSubmitted && (

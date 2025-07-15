@@ -49,28 +49,33 @@ const UserProfilePage = () => {
     }
     setLoggingOut(false);
   };
+// Show loading while auth or data is being fetched
+if (loading) {
+  return <div className="p-6 text-center text-light">Loading profile...</div>;
+}
 
-  if (loading) return <div className="p-6 text-center">Loading profile...</div>;
+// Show access denied if user is not logged in and is trying to view their own profile
+if (!authUser && !id) {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
+      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
+        Access Denied
+      </h2>
+      <p className="mb-4 text-gray-600 dark:text-gray-300">You must be signed in to view this profile.</p>
+      <button
+        onClick={() => navigate("/login")}
+        className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition"
+      >
+        Sign In
+      </button>
+    </div>
+  );
+}
 
-  if (!authUser && !id) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-          Please sign in to continue
-        </h2>
-        <button
-          onClick={() => navigate("/login")}
-          className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition"
-        >
-          Sign In
-        </button>
-      </div>
-    );
-  }
-
-  if (!userData) {
-    return <div className="p-6 text-center">User not found.</div>;
-  }
+// If user data wasn't found
+if (!userData) {
+  return <div className="p-6 text-center">User not found.</div>;
+}
 
   return (
     <section className=" bg-blueGray-50  flex flex-col justify-center">

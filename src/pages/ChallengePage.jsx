@@ -8,25 +8,33 @@ const ChallengePage = ({
   loading = false,
   isLoggedIn = false, // 👈 add this prop
 }) => {
-  if (!isLoggedIn) {
-    return (
-      <section className="flex justify-center items-center h-screen text-center px-4">
-        <div className="max-w-md bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg border border-green-400">
-          <h2 className="text-3xl font-bold text-accent mb-4">Access Denied</h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
-            You need to <span className="font-semibold">log in</span> to access the challenges.
+ if (loading) {
+  return (
+    <section className="flex justify-center items-center h-screen text-center px-4">
+      <SubmissionStatus status="loading" />
+    </section>
+  );
+}
 
-          </p>
-          <button
-          onClick={() => navigate("/login")}
-          className="bg-primary text-white px-12 py-3 mt-8 rounded-lg hover:bg-orange-600 transition"
+if (!isLoggedIn) {
+  return (
+    <section className="flex justify-center items-center h-screen text-center px-4">
+      <div className="max-w-md bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg border border-green-400">
+        <h2 className="text-3xl font-bold text-accent mb-4">Access Denied</h2>
+        <p className="mb-5 text-lg text-gray-600 dark:text-gray-300">
+          You need to <span className="font-semibold">log in</span> to access the challenges.
+        </p>
+        <Link
+          to="/login"
+          className="bg-primary text-white px-12 py-3 rounded-lg hover:bg-orange-600 transition"
         >
           Sign In
-        </button>
-        </div>
-      </section>
-    );
-  }
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 
   const safeLeaderboard = Array.isArray(leaderboard) ? leaderboard : [];
   const sortedChallenges = [...challenges].sort(
