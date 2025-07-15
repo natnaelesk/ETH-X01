@@ -1,3 +1,4 @@
+import React from "react";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider, db } from "../Firebase";
 import { doc, setDoc, getDoc, serverTimestamp } from "firebase/firestore";
