@@ -1,0 +1,150 @@
+@import "tailwindcss";
+
+/* === Custom Theme Workaround (manual version of config) === */
+
+/* === Fonts === */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Cabin&family=Inter&family=Plus+Jakarta+Sans&display=swap');
+
+.font-heading {
+  font-family: 'Anton', sans-serif;
+}
+.font-body {
+  font-family: 'Inter', sans-serif;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-cabin {
+  font-family: 'Cabin', sans-serif;
+}
+.font-plus {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* === Colors === */
+.border-primary{
+  border-color: #FF6B00;
+}
+.text-primary {
+  color: #FF6B00;
+}
+.bg-primary {
+   
+  background-color: #FF6B00;
+  
+
+}
+.text-accent {
+  color: #34D399;
+}
+.bg-accent {
+  background-color: #34D399;
+}
+.bg-dark {
+  background-color: #121212;
+}
+.bg-surface {
+  background-color: #1F1F1F;
+}
+.text-light {
+  color: #F3F4F6;
+}
+.text-secondary {
+  color: #9CA3AF;
+}
+
+/* === Shadows === */
+.shadow-glow {
+  box-shadow: 0 0 15px #FF6B00;
+}
+.shadow-neon-green {
+  box-shadow: 0 0 10px #34D399;
+}
+.shadow-neon-orange {
+  box-shadow: 0 0 10px #FF6B00;
+}
+
+/* === Animations === */
+@keyframes slideUp {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-slideUp {
+  animation: slideUp 0.4s ease-out;
+}
+@keyframes bounceSlow {
+  0%, 100% {
+    transform: translateY(-5%);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+.animate-bounceSlow {
+  animation: bounceSlow 2s infinite;
+}
+
+/* === Gradient Background === */
+.bg-primary-gradient {
+  background-image: linear-gradient(180deg, #CE9FFC 0%, #A582F7 50.52%, #7367F0 100%);
+}
+
+@keyframes fire-spark {
+  0% {
+    opacity: 0.5;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.8);
+  }
+}
+
+.glitter-fire::before,
+.glitter-fire::after {
+  content: "🔥";
+  position: absolute;
+  font-size: 1.5rem;
+  color: #ff4d4d;
+  animation: fire-spark 1.8s infinite;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.glitter-fire::before {
+  top: -10px;
+  left: -12px;
+  animation-delay: 0s;
+}
+
+.glitter-fire::after {
+  top: -16px;
+  right: -10px;
+  animation-delay: 1s;
+}
+/* Optional: smooth line-through animation */
+a.line-through {
+  position: relative;
+  text-decoration: none;
+}
+
+a.line-through::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 2px;
+  width: 100%;
+  background: #ef4444;
+  transform: translateY(-50%);
+}
