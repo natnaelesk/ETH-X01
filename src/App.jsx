@@ -12,9 +12,21 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore"; // <- 
 import ChallengeDetailPage from "./pages/ChallengeDetailPage";
 import DiscussionPanel from "./pages/DiscussionPage";
 import UnderConstruction from "./pages/UnderConstruction ";
-import UserProfilePage from "./pages/UserProfilePage";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import HeroSection from "./Components/HeroSection";
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+useEffect(() => {
+  const auth = getAuth();
+  const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    setUser(firebaseUser);
+  });
+
+  return () => unsubscribe(); // cleanup listener
+}, []);
+  const isLoggedIn = !!user;
   const [challenges, setChallenges] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(true); // <- new
@@ -67,7 +79,7 @@ const App = () => {
         <main className=" flex-grow  relative z-10 pb-24">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<UnderConstruction />} />
+            <Route path="/" element={<HeroSection />} />
             <Route path="/discover" element={<UnderConstruction />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/discussion" element={<DiscussionPanel />} />
@@ -79,6 +91,7 @@ const App = () => {
                 <ChallengePage
                   challenges={challenges}
                   leaderboard={leaderboardLoading ? null : leaderboard} // <- pass null until loaded
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />

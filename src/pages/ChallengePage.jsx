@@ -1,8 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import SubmissionStatus from "../Components/SubmissionStatus"; // If you want to reuse animation style
+import SubmissionStatus from "../Components/SubmissionStatus";
 
-const ChallengePage = ({ challenges = [], leaderboard, loading = false }) => {
+const ChallengePage = ({
+  challenges = [],
+  leaderboard,
+  loading = false,
+  isLoggedIn = false, // 👈 add this prop
+}) => {
+  if (!isLoggedIn) {
+    return (
+      <section className="flex justify-center items-center h-screen text-center px-4">
+        <div className="max-w-md bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg border border-green-400">
+          <h2 className="text-3xl font-bold text-accent mb-4">Access Denied</h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300">
+            You need to <span className="font-semibold">log in</span> to access the challenges.
+
+          </p>
+          <button
+          onClick={() => navigate("/login")}
+          className="bg-primary text-white px-12 py-3 mt-8 rounded-lg hover:bg-orange-600 transition"
+        >
+          Sign In
+        </button>
+        </div>
+      </section>
+    );
+  }
+
   const safeLeaderboard = Array.isArray(leaderboard) ? leaderboard : [];
   const sortedChallenges = [...challenges].sort(
     (a, b) => b.createdAt?.seconds - a.createdAt?.seconds
@@ -13,10 +38,9 @@ const ChallengePage = ({ challenges = [], leaderboard, loading = false }) => {
 
   return (
     <section className="px-4 py-12 max-w-7xl mx-auto">
-     <h1 className="lg:text-9xl text-4xl lg:my-10 font-bold mb-12 text-center text-primary  font-heading">
-      LeetCode Challenge
+      <h1 className="lg:text-9xl text-4xl lg:my-10 font-bold mb-12 text-center text-primary font-heading">
+        LeetCode Challenge
       </h1>
-
 
       {loading ? (
         <div className="flex justify-center">
@@ -103,7 +127,7 @@ const ChallengePage = ({ challenges = [], leaderboard, loading = false }) => {
     >
       {index === 0 && (
         <span
-          className="absolute -left-8 top-1/2 transform -translate-y-1/2 text-6xl md:text-8xl select-none pointer-events-none transition-transform duration-300 hover:scale-110"
+          className="absolute -left-8 top-1/2 z-20 transform -translate-y-1/2 text-8xl md:text-8xl select-none pointer-events-none transition-transform duration-300 hover:scale-110"
           style={{ textShadow: "0 0 8px #34d399, 0 0 15px #059669" }}
           aria-label="Rocket"
           role="img"

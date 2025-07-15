@@ -57,8 +57,8 @@ const Navbar = ({ navigationData = [], currentRoute, setCurrentRoute }) => {
     <>
       {/* Desktop Navbar */}
       <nav className="bg-dark sticky top-0 hidden md:flex items-center justify-between px-8 h-20 bg-dark rounded-b-3xl shadow z-[99]">
-        <span className="text-5xl text-light -mb-1">
-          <CgMonday />
+        <span className="text-5xl text-light -mb-1 logo">
+          ETH-X01
         </span>
         <ul className="flex flex-row gap-6">
           {navigationData.map((item, index) => (

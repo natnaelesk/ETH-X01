@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap');
 
 /* === Custom Theme Workaround (manual version of config) === */
 
@@ -36,6 +37,7 @@
 }
 .text-accent {
   color: #34D399;
+  font-family: "Tektur", sans-serif;
 }
 .bg-accent {
   background-color: #34D399;
@@ -148,3 +150,75 @@ a.line-through::after {
   background: #ef4444;
   transform: translateY(-50%);
 }
+
+
+
+/* SolarFlareWaves.css */
+
+.solar-flare {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  filter: blur(60px);
+  animation: flicker 10s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.flare-orange {
+  background: radial-gradient(ellipse at center, rgba(255, 102, 0, 0.3), transparent 70%);
+  animation-delay: 0s;
+}
+
+.flare-green {
+  background: radial-gradient(ellipse at center, rgba(0, 255, 128, 0.2), transparent 70%);
+  animation-delay: 6s;
+}
+
+@keyframes flicker {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(-48%, -52%) rotate(20deg) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+
+@keyframes flicker {
+  0%, 100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    opacity: 0.04;
+  }
+  20% {
+    transform: translate(-48%, -52%) rotate(10deg) scale(1.1);
+    opacity: 0.08;
+  }
+  40% {
+    transform: translate(-52%, -48%) rotate(-15deg) scale(1.05);
+    opacity: 0.06;
+  }
+  60% {
+    transform: translate(-49%, -51%) rotate(20deg) scale(1.12);
+    opacity: 0.1;
+  }
+  80% {
+    transform: translate(-51%, -49%) rotate(-10deg) scale(1);
+    opacity: 0.05;
+  }
+}
+
+.logo{
+  font-size: 32px;
+  font-family: "Tektur", sans-serif;
+  font-weight: 700;
+  color: #34D399 ;
+  -webkit-text-stroke: 0.2px #c6f8e5;
+}
+

@@ -73,7 +73,7 @@ const UserProfilePage = () => {
   }
 
   return (
-    <section className="pt-16 bg-blueGray-50 min-h-screen flex flex-col justify-center">
+    <section className=" bg-blueGray-50  flex flex-col justify-center">
       <div className="w-full lg:w-4/12 px-4 mx-auto">
         <div className="bg-primary shadow-xl rounded-lg mt-16 p-6">
           <div className="text-center">
@@ -105,10 +105,10 @@ const UserProfilePage = () => {
 
       {userData.completedProblems && userData.completedProblems.length > 0 && (
         <div className="w-full lg:w-8/12 px-4 mt-10 mx-auto">
-          <h4 className="text-xl font-semibold mb-4 text-center text-gray-800">
+          <h4 className="text-xl font-semibold mb-4 text-center text-light">
             ✅ Completed Challenges
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-20 md:px-0">
             {userData.completedProblems.map((task, index) => (
               <div
                 key={index}
