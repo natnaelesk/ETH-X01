@@ -91,7 +91,8 @@ useEffect(() => {
                 <ChallengePage
                   challenges={challenges}
                   leaderboard={leaderboardLoading ? null : leaderboard} // <- pass null until loaded
-                  isLoggedIn={isLoggedIn}
+                  isLoggedIn={isLoggedIn} 
+                  
                 />
               }
             />

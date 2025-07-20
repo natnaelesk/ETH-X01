@@ -42,10 +42,10 @@ if (!isLoggedIn) {
   );
 
   const isMobile = window.innerWidth < 1024;
-  const topLeaderboard = isMobile ? safeLeaderboard.slice(0, 5) : safeLeaderboard;
+  const topLeaderboard = isMobile ? safeLeaderboard.slice(0, 5) : safeLeaderboard.slice(0, 10);
 
   return (
-    <section className="px-4 py-12 max-w-7xl mx-auto">
+    <section className="px-4 py-12 max-w-[1600px] mx-auto">
       <h1 className="lg:text-9xl text-4xl lg:my-10 font-bold mb-12 text-center text-primary font-heading">
         LeetCode Challenge
       </h1>
@@ -58,10 +58,11 @@ if (!isLoggedIn) {
         <>
           {/* Leaderboard on mobile (above challenges) */}
           <div className="px-8 block lg:hidden mb-10">
-  <h2 className="text-2xl font-bold text-accent mb-4">Top Scorers</h2>
+  <h2 className="text-2xl font-bold text-accent mb-4">Top Scores</h2>
   <div className="space-y-4">
     {topLeaderboard.length ? (
       topLeaderboard.map((user, index) => {
+        // console.log(topLeaderboard)
         const crownStyle =
           index === 0
             ? "relative text-white bg-gradient-to-br from-[#7b1c1c] via-[#e11d48] to-[#f87171] shadow-[0_0_25px_#ff1a1a] animate-pulse border-2 border-[#ff4444] glitter-fire"
@@ -118,51 +119,51 @@ if (!isLoggedIn) {
 
 
           {/* Main content layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 ">
             {/* Challenge Cards */}
-            <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-  {sortedChallenges.map((challenge, index) => (
-    <Link
-      to={`/challenge/${challenge.id}`}
-      key={challenge.id}
-      className={`relative rounded-2xl p-6 min-h-[260px] shadow-md flex flex-col justify-between transition-all duration-300 overflow-visible
-        ${
-          index === 0
-            ? "bg-gradient-to-br from-green-400 via-green-600 to-green-700 text-white shadow-lg"
-            : "bg-gradient-to-br from-[#2f2f2f] via-[#3b3b3b] to-[#4b4b4b] text-white border border-gray-700"
-        }
-      `}
-    >
-      {index === 0 && (
-        <span
-          className="absolute -left-8 top-1/2 z-20 transform -translate-y-1/2 text-8xl md:text-8xl select-none pointer-events-none transition-transform duration-300 hover:scale-110"
-          style={{ textShadow: "0 0 8px #34d399, 0 0 15px #059669" }}
-          aria-label="Rocket"
-          role="img"
-        >
-          🚀
-        </span>
-      )}
-      <div className="mb-4 space-y-1">
-        <h3 className="text-xl font-bold">{challenge.patternTitle} - {challenge.dayTitle}</h3>
-        <p className="text-sm opacity-80">{challenge.shortDescription}</p>
-      </div>
-      <div className="mt-auto pt-4 border-t border-white/20 text-xs flex justify-between gap-3">
-        <span>📅 {challenge.date}</span>
-        <span>🔥 {challenge.difficulty}</span>
-        <span>⏱ {challenge.timeToSolve}</span>
-      </div>
-    </Link>
-  ))}
-</div>
+          <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 ">
+            {sortedChallenges.map((challenge, index) => (
+              <Link
+                to={`/challenge/${challenge.id}`}
+                key={challenge.id}
+                className={`relative rounded-2xl p-6 min-h-[260px] max-h-[300px] lg:min-w-[300px] shadow-md flex flex-col justify-between transition-all duration-300 overflow-visible
+                  ${
+                    index === 0
+                      ? "bg-gradient-to-br from-green-400 via-green-600 to-green-700 text-white shadow-lg"
+                      : "bg-gradient-to-br from-[#2f2f2f] via-[#3b3b3b] to-[#4b4b4b] text-white border border-gray-700"
+                  }
+                `}
+              >
+                {index === 0 && (
+                  <span
+                    className="absolute -left-8 top-1/2 z-20 transform -translate-y-1/2 text-8xl md:text-8xl select-none pointer-events-none transition-transform duration-300 hover:scale-110"
+                    style={{ textShadow: "0 0 8px #34d399, 0 0 15px #059669" }}
+                    aria-label="Rocket"
+                    role="img"
+                  >
+                    🚀
+                  </span>
+                )}
+                <div className="mb-4 space-y-1">
+                  <h3 className="text-xl font-bold">{challenge.patternTitle} - {challenge.dayTitle}</h3>
+                  <p className="text-sm opacity-80">{challenge.shortDescription}</p>
+                </div>
+                <div className="mt-auto pt-4 border-t border-white/20 text-xs flex justify-between gap-3">
+                  <span>📅 {challenge.date}</span>
+                  <span>🔥 {challenge.difficulty}</span>
+                  <span>⏱ {challenge.timeToSolve}</span> 
+                </div>
+              </Link>
+            ))}
+          </div>
 
 
             {/* Leaderboard for desktop */}
             <div className="hidden lg:block space-y-6">
               <h2 className="text-2xl font-bold text-accent mb-4">Top Scorers</h2>
               <div className="space-y-4">
-                {safeLeaderboard.length ? (
-                  safeLeaderboard.map((user, index) => {
+                {topLeaderboard.length ? (
+                  topLeaderboard.map((user, index) => {
                   const crownStyle =
                   index === 0
                     ? "relative text-white bg-gradient-to-br from-[#7b1c1c] via-[#e11d48] to-[#f87171] shadow-[0_0_25px_#ff1a1a] animate-pulse border-2 border-[#ff4444] glitter-fire"
