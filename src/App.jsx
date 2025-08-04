@@ -14,6 +14,7 @@ import DiscussionPanel from "./pages/DiscussionPage";
 import UnderConstruction from "./pages/UnderConstruction ";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import HeroSection from "./Components/HeroSection";
+import BulkUploader from "./Components/BulkUploader";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -84,7 +85,7 @@ useEffect(() => {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/discussion" element={<DiscussionPanel />} />
             <Route path="/admin" element={<AdminPage />} />
-
+            <Route path="/bulk-upload" element={<BulkUploader />} />
             <Route
               path="/challenges"
               element={

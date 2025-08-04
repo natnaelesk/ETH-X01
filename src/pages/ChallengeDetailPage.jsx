@@ -139,6 +139,7 @@ const ChallengeDetailsPage = () => {
       <p className="text-sm text-secondary mb-4 text-light">{challenge.shortDescription}</p>
 
       </div>
+      ,# this is just none sence am trying to write it wount be that muxch of a big deal 
       
       <div className="space-y-6">
         {challenge.questions?.map((q) => {

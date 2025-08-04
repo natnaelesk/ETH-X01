@@ -37,9 +37,11 @@ if (!isLoggedIn) {
 
 
   const safeLeaderboard = Array.isArray(leaderboard) ? leaderboard : [];
-  const sortedChallenges = [...challenges].sort(
-    (a, b) => b.createdAt?.seconds - a.createdAt?.seconds
-  );
+const today = new Date().toISOString().split("T")[0];
+
+const sortedChallenges = [...challenges]
+  .filter((ch) => ch.date <= today)
+  .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   const isMobile = window.innerWidth < 1024;
   const topLeaderboard = isMobile ? safeLeaderboard.slice(0, 5) : safeLeaderboard.slice(0, 10);
