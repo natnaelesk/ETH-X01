@@ -7,7 +7,7 @@ const PythonChallengeCard = ({ challenge, isLatest = false }) => {
 
   return (
     <Link
-      to={`/challenges/python-crash-course/${challenge.id}`}
+      to={`/python-crash-course/${challenge.id}`}
       className={`group relative rounded-2xl p-6 min-h-[280px] flex flex-col justify-between transition-all duration-500 overflow-hidden border
         ${
           isShiny
