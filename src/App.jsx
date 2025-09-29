@@ -22,12 +22,6 @@ import PythonBulkUploader from "./Components/PythonBulkUploader";
 
 const App = () => {
 
-  useEffect(() => {
-  console.log('🔍 Current challenges:', challenges);
-  console.log('🔍 Python challenges:', pythonChallenges);
-  console.log('🔍 Leaderboard loading:', leaderboardLoading);
-}, [challenges, pythonChallenges, leaderboardLoading]);
-
   const [pythonChallenges, setPythonChallenges] = useState([]);
   const [pythonChallengesLoading, setPythonChallengesLoading] = useState(true);
 
@@ -125,7 +119,7 @@ useEffect(() => {
             <Route path="/profile/:id" element={<ProfilePage />} />
              {/* LeetCode challenges */}
             <Route
-              path="/challenges/leetcode"
+              path="/leetcode"
               element={
                 <ChallengePage
                   challenges={challenges}
@@ -134,11 +128,11 @@ useEffect(() => {
                 />
               }
             />
-            <Route path="/challenges/leetcode/:id" element={<ChallengeDetailPage />} />
+            <Route path="/leetcode/:id" element={<ChallengeDetailPage />} />
 
             {/* Python challenges */}
             <Route
-              path="/challenges/python-crash-course"
+              path="/python-crash-course"
               element={
                 <PythonChallengePage
                   isLoggedIn={isLoggedIn}
@@ -149,7 +143,7 @@ useEffect(() => {
               }
             />
             <Route
-              path="/challenges/python-crash-course/:id"
+              path="/python-crash-course/:id"
               element={<PythonChallengeDetailsPage isLoggedIn={isLoggedIn} />}
             />
             <Route path="/admin/python-challenges" element={<PythonAdminPanel />} />
