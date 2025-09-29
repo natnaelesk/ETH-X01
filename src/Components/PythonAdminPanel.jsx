@@ -23,14 +23,9 @@ const PythonAdminPanel = () => {
     e.preventDefault();
 
     try {
-      const challengeId = `day${formData.day}_${formData.title
-        .toLowerCase()
-        .replace(/\s+/g, "_")}`;
-
       const challengeData = {
         ...formData,
         day: parseInt(formData.day),
-        id: challengeId,
         createdAt: serverTimestamp(),
       };
 

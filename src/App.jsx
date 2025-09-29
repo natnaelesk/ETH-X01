@@ -106,7 +106,7 @@ useEffect(() => {
     <Router>
       <div className="bg-surface min-h-screen flex flex-col">
         <Navbar navigationData={navigationItems} className="relative z-50" />
-        <main className="flex-grow relative z-10 pb-24">
+        <main className="flex-grow relative z-10 ">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/" element={<HeroSection />} />
@@ -115,34 +115,38 @@ useEffect(() => {
             <Route path="/discussion" element={<DiscussionPanel />} />
             <Route path="/admin" element={<AdminPage />} />
             <Route path="/bulk-upload" element={<BulkUploader />} />
+            <Route path="/profile/:id" element={<ProfilePage />} />
+             {/* LeetCode challenges */}
             <Route
               path="/challenges/leetcode"
               element={
                 <ChallengePage
                   challenges={challenges}
                   leaderboard={leaderboardLoading ? null : leaderboard}
-                  isLoggedIn={isLoggedIn} 
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />
-            <Route path="/profile/:id" element={<ProfilePage />} />
             <Route path="/challenges/leetcode/:id" element={<ChallengeDetailPage />} />
-            
-            {/* FIXED: Add isLoggedIn prop to PythonChallengePage */}  
-            <Route 
-              path="/challenges/python-crash-course" 
+
+            {/* Python challenges */}
+            <Route
+              path="/challenges/python-crash-course"
               element={
-                <PythonChallengePage 
+                <PythonChallengePage
                   isLoggedIn={isLoggedIn}
                   challenges={pythonChallenges}
                   leaderboard={leaderboardLoading ? null : leaderboard}
                   loading={pythonChallengesLoading}
                 />
-              } 
+              }
+            />
+            <Route
+              path="/challenges/python-crash-course/:id"
+              element={<PythonChallengeDetailsPage isLoggedIn={isLoggedIn} />}
             />
             <Route path="/admin/python-challenges" element={<PythonAdminPanel />} />
             <Route path="/bulk-upload-python" element={<PythonBulkUploader />} />
-            <Route path="/challenge/python/:id" element={<PythonChallengeDetailsPage />} />
           </Routes>
         </main>
       </div>

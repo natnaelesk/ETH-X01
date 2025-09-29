@@ -15,6 +15,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { getDoc } from "firebase/firestore";
 
 const PythonChallengeDetailsPage = () => {
   const { id } = useParams();
@@ -35,23 +36,13 @@ const PythonChallengeDetailsPage = () => {
   useEffect(() => {
     const fetchChallenge = async () => {
       try {
-        const dayNumber = parseInt(id.replace('day', '').split('_')[0]);
-        
-        const q = query(
-          collection(db, "pythonChallenges"),
-          where("day", "==", dayNumber)
-        );
-        
-        const querySnapshot = await getDocs(q);
-        
-        if (!querySnapshot.empty) {
-                const docSnap = querySnapshot.docs[0];
-                const data = docSnap.data();
+        const docRef = doc(db, "pythonChallenges", id);
+        const docSnap = await getDoc(docRef);
 
-                setChallenge({ id: docSnap.id, ...data });
-
-                // Load comments from array
-                setComments(data.comments ? [...data.comments].sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds) : []);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setChallenge({ id: docSnap.id, ...data });
+          setComments(data.comments ? [...data.comments].sort((a, b) => b.timestamp?.seconds - a.timestamp?.seconds) : []);
         } else {
           setMessage("Challenge not found");
         }
