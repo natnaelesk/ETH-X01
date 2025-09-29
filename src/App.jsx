@@ -21,6 +21,13 @@ import PythonAdminPanel from "./Components/PythonAdminPanel";
 import PythonBulkUploader from "./Components/PythonBulkUploader";
 
 const App = () => {
+
+  useEffect(() => {
+  console.log('🔍 Current challenges:', challenges);
+  console.log('🔍 Python challenges:', pythonChallenges);
+  console.log('🔍 Leaderboard loading:', leaderboardLoading);
+}, [challenges, pythonChallenges, leaderboardLoading]);
+
   const [pythonChallenges, setPythonChallenges] = useState([]);
   const [pythonChallengesLoading, setPythonChallengesLoading] = useState(true);
 
