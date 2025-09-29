@@ -126,7 +126,7 @@ const sortedChallenges = [...challenges]
           <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 ">
             {sortedChallenges.map((challenge, index) => (
               <Link
-                to={`/challenges/leetcode/${challenge.id}`}
+                to={`/leetcode/${challenge.id}`}
                 key={challenge.id}
                 className={`relative rounded-2xl p-6 min-h-[260px] max-h-[300px] lg:min-w-[300px] shadow-md flex flex-col justify-between transition-all duration-300 overflow-visible
                   ${

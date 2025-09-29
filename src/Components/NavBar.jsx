@@ -162,7 +162,7 @@ const Navbar = ({ navigationData = [], currentRoute, setCurrentRoute }) => {
           {showDropdown === item && (
             <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-52 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
               <Link
-                to="/challenges/leetcode"
+                to="/leetcode"
                 onClick={() => {
                   setCurrentRoute(item);
                   setShowDropdown(null);
@@ -172,7 +172,7 @@ const Navbar = ({ navigationData = [], currentRoute, setCurrentRoute }) => {
                 🚀 LeetCode Challenges
               </Link>
               <Link
-                to="/challenges/python-crash-course"
+                to="/python-crash-course"
                 onClick={() => {
                   setCurrentRoute(item);
                   setShowDropdown(null);
