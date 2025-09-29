@@ -22,6 +22,7 @@ import PythonBulkUploader from "./Components/PythonBulkUploader";
 
 const App = () => {
 
+
   const [pythonChallenges, setPythonChallenges] = useState([]);
   const [pythonChallengesLoading, setPythonChallengesLoading] = useState(true);
 
@@ -119,7 +120,7 @@ useEffect(() => {
             <Route path="/profile/:id" element={<ProfilePage />} />
              {/* LeetCode challenges */}
             <Route
-              path="/leetcode"
+              path="/challenges/leetcode"
               element={
                 <ChallengePage
                   challenges={challenges}
@@ -128,11 +129,11 @@ useEffect(() => {
                 />
               }
             />
-            <Route path="/leetcode/:id" element={<ChallengeDetailPage />} />
+            <Route path="/challenges/leetcode/:id" element={<ChallengeDetailPage />} />
 
             {/* Python challenges */}
             <Route
-              path="/python-crash-course"
+              path="/challenges/python-crash-course"
               element={
                 <PythonChallengePage
                   isLoggedIn={isLoggedIn}
@@ -143,7 +144,7 @@ useEffect(() => {
               }
             />
             <Route
-              path="/python-crash-course/:id"
+              path="/challenges/python-crash-course/:id"
               element={<PythonChallengeDetailsPage isLoggedIn={isLoggedIn} />}
             />
             <Route path="/admin/python-challenges" element={<PythonAdminPanel />} />
