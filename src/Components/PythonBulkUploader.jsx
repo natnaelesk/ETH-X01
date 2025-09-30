@@ -6,65 +6,19 @@ import { db } from "../Firebase";
 // Sample Python challenges data (Python Crash Course inspired)
 const pythonChallenges = [
   {
-    day: 1,
-    title: "Python Basics - Variables and Print",
-    topic: "Variables & Output",
-    date: "2024-01-15",
-    estimatedTime: "30 minutes",
-    difficulty: "Beginner",
-    shortDescription: "Learn variables and print function",
-    objectives: "Understand how to create variables and display output in Python",
-    instructions: "1. Create a variable called 'name' and assign your name to it\n2. Create a variable called 'age' and assign your age to it\n3. Print a message that says: 'Hello, my name is [name] and I am [age] years old.'\n4. Try using different data types: string, integer, and float",
-    example: "name = \"Alice\"\nage = 25\nprint(f\"Hello, my name is {name} and I am {age} years old.\")"
+    "day": 2,
+    "date": "2025-9-30",
+    "title": "Variables & Data Types",
+    "topic": "Variables, data types & type casting",
+    "estimatedTime": "60 minutes",
+    "difficulty": "Beginner",
+    "shortDescription": "Learn how to store data using variables and explore Python's basic data types.",
+    "objectives": "1. Understand what variables are and why we use them. 2. Explore basic data types (int, float, str, bool). 3. Learn naming rules and conventions. 4. Practice converting between types (type casting).",
+    "instructions": "1. Open the provided notebook and run cells in order. 2. Read comments & explanations. 3. Work through the included exercises. 4. Complete the quiz in the notebook. 5. Submit your code results.",
+    "example": "age = 25\nname = \"Alice\"\nheight = 1.75\nprint(f\"{name} is {age} years old and {height}m tall\")\nconverted = int(\"10\") + 5\nprint(converted)",
+    "youtubeLink": "https://www.youtube.com/watch?v=KeA39II7AO8",
+    "notebookLink": "https://colab.research.google.com/drive/1XsSwhadpxBG4MRLLD50xmm7L1EFQZs5d?usp=sharing"
   },
-  {
-    day: 2,
-    title: "Data Types and Basic Operations",
-    topic: "Data Types & Operations",
-    date: "2024-01-16",
-    estimatedTime: "45 minutes",
-    difficulty: "Beginner",
-    shortDescription: "Learn about different data types and basic operations",
-    objectives: "Understand strings, numbers, booleans and basic mathematical operations",
-    instructions: "1. Create variables of different types: string, integer, float, boolean\n2. Perform basic math operations: addition, subtraction, multiplication, division\n3. Practice string concatenation and methods\n4. Create a simple calculator that adds two numbers",
-    example: "# Numbers\nx = 10\ny = 3.5\nresult = x + y\n\n# Strings\nname = \"Python\"\ngreeting = \"Hello \" + name\n\n# Boolean\nis_fun = True"
-  },
-  {
-    day: 3,
-    title: "Lists and List Methods",
-    topic: "Lists & Collections",
-    date: "2024-01-17",
-    estimatedTime: "40 minutes",
-    difficulty: "Beginner",
-    shortDescription: "Learn about Python lists and common operations",
-    objectives: "Understand how to create, access, and manipulate lists in Python",
-    instructions: "1. Create a list of your favorite fruits\n2. Add a new fruit to the list\n3. Remove a fruit from the list\n4. Sort the list alphabetically\n5. Print the first and last items in the list",
-    example: "fruits = ['apple', 'banana', 'orange']\nfruits.append('grape')\nfruits.remove('banana')\nfruits.sort()\nprint(f\"First fruit: {fruits[0]}\")\nprint(f\"Last fruit: {fruits[-1]}\")"
-  },
-  {
-    day: 4,
-    title: "If Statements and Conditional Logic",
-    topic: "Conditionals",
-    date: "2024-01-18",
-    estimatedTime: "35 minutes",
-    difficulty: "Beginner",
-    shortDescription: "Learn conditional statements and decision making",
-    objectives: "Understand if, elif, else statements and comparison operators",
-    instructions: "1. Create a program that checks if a number is positive, negative, or zero\n2. Check if a person is eligible to vote (age >= 18)\n3. Create a simple grade calculator (A: 90-100, B: 80-89, etc.)\n4. Check if a year is a leap year",
-    example: "age = 20\nif age >= 18:\n    print(\"You can vote!\")\nelse:\n    print(\"You cannot vote yet.\")"
-  },
-  {
-    day: 5,
-    title: "For Loops and Range",
-    topic: "Loops",
-    date: "2024-01-19",
-    estimatedTime: "40 minutes",
-    difficulty: "Beginner",
-    shortDescription: "Learn about for loops and iteration",
-    objectives: "Understand how to use for loops with lists, strings, and range",
-    instructions: "1. Print numbers from 1 to 10 using a for loop\n2. Iterate through a list of names and greet each person\n3. Calculate the sum of numbers from 1 to 100\n4. Print each character in your name on a new line",
-    example: "# Print numbers 1-10\nfor i in range(1, 11):\n    print(i)\n\n# Greet each person\nnames = ['Alice', 'Bob', 'Charlie']\nfor name in names:\n    print(f\"Hello, {name}!\")"
-  }
 ];
 
 const PythonBulkUploader = () => {
