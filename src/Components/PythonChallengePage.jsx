@@ -48,21 +48,19 @@ const PythonChallengePage = ({
   }
 
   // FIXED: Proper date comparison like in inspiration code
-  const today = new Date().toISOString().split("T")[0];
-  
-  const sortedChallenges = Array.isArray(challenges) 
-    ? [...challenges]
-        .filter((ch) => {
-          // Convert both dates to the same format for comparison
-          const challengeDate = new Date(ch.date).toISOString().split('T')[0];
-          return challengeDate <= today;
-        })
-        .sort((a, b) => new Date(b.date) - new Date(a.date))
-    : [];
+// FIXED: Proper date filtering for today and past challenges
+const today = new Date();
+today.setHours(0, 0, 0, 0); // Set to midnight for accurate comparison
 
-  console.log('Available challenges:', challenges.length);
-  console.log('Filtered challenges:', sortedChallenges.length);
-  console.log('Today:', today);
+const sortedChallenges = Array.isArray(challenges)
+  ? [...challenges]
+      .filter((ch) => {
+        const challengeDate = new Date(ch.date);
+        challengeDate.setHours(0, 0, 0, 0); // ignore time component
+        return challengeDate <= today; // only today or past
+      })
+      .sort((a, b) => new Date(b.date) - new Date(a.date)) // newest first
+  : [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black text-white">
