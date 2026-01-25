@@ -219,20 +219,8 @@ This project was actively used by the community but is currently quiet as member
 
 ---
 
-## 🔗 Links
-
-- **Repository:** [https://github.com/natnaelesk/ETH-X01](https://github.com/natnaelesk/ETH-X01)
-- **Issues:** [Report a bug or request a feature](https://github.com/natnaelesk/ETH-X01/issues)
-
----
-
-## 📄 License
-
-This project is licensed under the ISC License.
-
----
-
 ## 👨‍💻 Author
+**Natnael Eskinder**
 
 Built with ❤️ by the ETH-X01 community
 
