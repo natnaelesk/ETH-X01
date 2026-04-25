@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./Components/NavBar";
+import { PublicNavbar } from "./Components/layout/PublicNavbar";
 import Footer from "./Components/Footer";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
@@ -106,7 +106,7 @@ useEffect(() => {
   return (
     <Router>
       <div className="bg-surface min-h-screen flex flex-col">
-        <Navbar navigationData={navigationItems} className="relative z-50" />
+        <PublicNavbar />
         <main className="flex-grow relative z-10 ">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
