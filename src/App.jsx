@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PublicNavbar } from "./Components/layout/PublicNavbar";
+import { PublicNavbar } from "./components/layout/PublicNavbar";
 import Footer from "./Components/Footer";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
