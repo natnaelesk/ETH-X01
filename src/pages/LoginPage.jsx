@@ -45,7 +45,7 @@ const LoginPage = () => {
 
             {/* ✅ NEW INFO TEXT */}
             <p className="mt-3 text-sm text-center text-secondary">
-              We currently accept <strong>only Google login</strong>. <br />
+              We currently accept <strong>only Google login</strong> and others later. <br />
               Sign in using your Google account.
             </p>
 
