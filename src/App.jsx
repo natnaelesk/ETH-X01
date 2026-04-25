@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PublicNavbar } from "./Components/layout/PublicNavbar";
-import Footer from "./Components/Footer";
+import { PublicNavbar } from "./components/layout/PublicNavbar";
 import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
 import ProfilePage from "./pages/ProfilePage";
 import ChallengePage from "./pages/ChallengePage";
 import AdminPage from "./pages/AdminPage";
@@ -13,12 +11,12 @@ import ChallengeDetailPage from "./pages/ChallengeDetailPage";
 import DiscussionPanel from "./pages/DiscussionPage";
 import UnderConstruction from "./pages/UnderConstruction ";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import HeroSection from "./Components/HeroSection";
 import BulkUploader from "./Components/BulkUploader";
 import PythonChallengePage from './Components/PythonChallengePage';
 import PythonChallengeDetailsPage from './Components/PythonChallengeDetailsPage';
 import PythonAdminPanel from "./Components/PythonAdminPanel";
 import PythonBulkUploader from "./Components/PythonBulkUploader";
+import { LandingPage } from "../features/marketing/page/LandingPage";
 
 const App = () => {
 
@@ -80,28 +78,25 @@ const App = () => {
     fetchLeaderboard();
   }, []);
 
-  const navigationItems = ["Home","Discover","Discussion","Profile","Challenges"];
-  // Add this useEffect to fetch Python challenges
-// In App.js, make sure you're fetching from the right collection
-useEffect(() => {
-  const fetchPythonChallenges = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "pythonChallenges"));
-      const fetchedChallenges = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      console.log("✅ Fetched Python challenges:", fetchedChallenges); // Debug log
-      setPythonChallenges(fetchedChallenges);
-    } catch (err) {
-      console.error("❌ Error loading Python challenges:", err);
-    } finally {
-      setPythonChallengesLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchPythonChallenges = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "pythonChallenges"));
+        const fetchedChallenges = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        console.log("✅ Fetched Python challenges:", fetchedChallenges);
+        setPythonChallenges(fetchedChallenges);
+      } catch (err) {
+        console.error("❌ Error loading Python challenges:", err);
+      } finally {
+        setPythonChallengesLoading(false);
+      }
+    };
 
-  fetchPythonChallenges();
-}, []);
+    fetchPythonChallenges();
+  }, []);
 
   return (
     <Router>
@@ -110,7 +105,7 @@ useEffect(() => {
         <main className="flex-grow relative z-10 ">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<HeroSection />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/discover" element={<UnderConstruction />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/discussion" element={<DiscussionPanel />} />
