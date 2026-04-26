@@ -17,6 +17,7 @@ import PythonAdminPanel from "./Components/PythonAdminPanel";
 import PythonBulkUploader from "./Components/PythonBulkUploader";
 import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { PublicLayout } from "./components/layout/PublicLayout";
+import { ChallengesPage } from "./features/challenges/pages/ChallengesPage";
 import { DashboardPage } from "./features/dashboard/pages/DashboardPage";
 import { DashboardWorkspacePage } from "./features/dashboard/pages/DashboardWorkspacePage";
 import { DsaTopicsPage } from "./features/dsa/pages/DsaTopicsPage";
@@ -149,7 +150,7 @@ const App = () => {
           <Route index element={<DashboardPage />} />
           <Route path="dsa" element={<DsaTopicsPage />} />
           <Route path="python" element={<PythonTrackPage />} />
-          <Route path="challenges" element={<DashboardWorkspacePage />} />
+          <Route path="challenges" element={<ChallengesPage />} />
           <Route path="leaderboard" element={<DashboardWorkspacePage />} />
           <Route path="profile" element={<DashboardWorkspacePage />} />
         </Route>
