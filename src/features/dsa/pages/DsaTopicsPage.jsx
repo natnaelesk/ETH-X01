@@ -1,11 +1,9 @@
-import { BookOpen, LayoutGrid, List, Sparkles, Target } from "lucide-react";
+import { LayoutGrid, List } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { EmptyState } from "@/components/shared/EmptyState";
 import { PageHeader } from "@/components/shared/PageHeader";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useMockResource } from "@/hooks/useMockResource";
 import { getTopics } from "../api";
@@ -26,21 +24,18 @@ export function DsaTopicsPage() {
   const { data, loading } = useMockResource(getTopics, []);
 
   const topics = useMemo(() => data || [], [data]);
-  const totalLessons = topics.reduce((sum, topic) => sum + topic.lessons, 0);
-  const averageProgress = topics.length
-    ? Math.round(topics.reduce((sum, topic) => sum + topic.progress, 0) / topics.length)
-    : 0;
 
   return (
     <div className="space-y-6">
       <PageHeader
+        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_24%),linear-gradient(180deg,#121212,#0d0d0d)] px-6 py-7 sm:px-8"
         eyebrow="Learning"
         title="DSA Topics"
-        description="Browse structured tracks with clearer progress signals, cleaner grouping, and the same premium dashboard rhythm."
+        description="Browse foundational and advanced topics with progress tracking and a clean, high-signal layout."
         actions={
-          <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-white/[0.03] p-1">
+          <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-black/30 p-1">
             <Button
-              className="rounded-xl border-0"
+              className="rounded-xl border-0 bg-transparent text-white/72 hover:bg-white/5 hover:text-white data-[variant=secondary]:bg-white/[0.08]"
               onClick={() => setLayout("grid")}
               size="sm"
               variant={layout === "grid" ? "secondary" : "ghost"}
@@ -49,7 +44,7 @@ export function DsaTopicsPage() {
               Grid
             </Button>
             <Button
-              className="rounded-xl border-0"
+              className="rounded-xl border-0 bg-transparent text-white/72 hover:bg-white/5 hover:text-white data-[variant=secondary]:bg-white/[0.08]"
               onClick={() => setLayout("list")}
               size="sm"
               variant={layout === "list" ? "secondary" : "ghost"}
@@ -60,51 +55,6 @@ export function DsaTopicsPage() {
           </div>
         }
       />
-
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card className="border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">Topic library</p>
-              <BookOpen className="h-4 w-4 text-white/45" />
-            </div>
-            <p className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">
-              {topics.length}
-            </p>
-            <p className="mt-2 text-sm text-white/55">Structured areas ready to explore.</p>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">Lesson coverage</p>
-              <Target className="h-4 w-4 text-white/45" />
-            </div>
-            <p className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">
-              {totalLessons}
-            </p>
-            <p className="mt-2 text-sm text-white/55">Lessons distributed across core and advanced tracks.</p>
-          </CardContent>
-        </Card>
-
-        <Card className="border border-white/10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.015))] text-white">
-          <CardContent className="p-5">
-            <div className="flex items-center justify-between">
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">Average progress</p>
-              <Sparkles className="h-4 w-4 text-white/45" />
-            </div>
-            <p className="mt-4 text-3xl font-medium tracking-[-0.04em] text-white">
-              {averageProgress}%
-            </p>
-            <div className="mt-3">
-              <Badge className="border border-white/10 bg-white/[0.05] text-white/78" variant="outline">
-                Momentum looks healthy
-              </Badge>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
 
       {loading ? (
         <TopicsSkeleton />
