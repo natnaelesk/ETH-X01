@@ -28,7 +28,7 @@ const LoginPage = () => {
       }
 
       console.log("Login successful:", user.displayName);
-      navigate("/profile");
+      navigate("/dashboard");
 
     } catch (err) {
       console.error("Google Login Error:", err.code, err.message);
