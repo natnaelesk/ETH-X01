@@ -1,57 +1,37 @@
 const dashboardOverview = {
   profile: {
-    name: "Mira",
-    level: "Gold learner",
-    weeklyGoal: "5 focused sessions",
+    name: "Mira Hassan",
+    level: "Intermediate",
+    weeklyGoal: "Developer learning workspace",
   },
   stats: {
-    streak: 12,
-    points: 4820,
-    completed: 38,
+    streak: 18,
+    points: 4280,
+    completed: 56,
     consistency: 84,
   },
   todayChallenge: {
-    title: "Longest Subarray With Sum K",
+    title: "Two Sum, then two variants",
     description:
-      "Practice prefix-sum thinking and window boundaries to improve mid-level array fluency.",
+      "Solve the classic pair-sum question, then extend it with sorted input and duplicate handling.",
     difficulty: "Medium",
     time: 25,
-    points: 180,
+    points: 120,
     href: "/leetcode",
   },
   continueLearning: {
-    title: "Sliding Window Foundations",
+    title: "Hash Maps and Frequency Counting",
     description:
-      "Resume your current DSA track with the next lesson on window resizing and frequency maps.",
-    progress: 68,
-    lessonsCompleted: 11,
-    totalLessons: 16,
+      "Revisit the patterns that unlock fast solutions for arrays and strings.",
+    progress: 72,
+    lessonsCompleted: 8,
+    totalLessons: 12,
     href: "/dashboard/dsa",
   },
   miniLeaderboard: [
-    { rank: 1, user: "Natnael", points: 6420 },
-    { rank: 2, user: "Saron", points: 6035 },
-    { rank: 3, user: "Mikiyas", points: 5880 },
-  ],
-  focusBlocks: [
-    {
-      title: "DSA Topics",
-      description: "Follow structured topic tracks with clean weekly progression.",
-      progress: "7 of 10 core array lessons finished",
-      href: "/dashboard/dsa",
-    },
-    {
-      title: "Python Track",
-      description: "Switch into beginner-friendly Python lessons when you need fundamentals.",
-      progress: "3 crash-course modules in progress",
-      href: "/dashboard/python",
-    },
-    {
-      title: "Daily Practice",
-      description: "Keep the streak alive with one deliberate challenge each day.",
-      progress: "Today’s challenge unlocks 180 pts",
-      href: "/dashboard/challenges",
-    },
+    { rank: 1, user: "Ava Chen", points: 12480 },
+    { rank: 2, user: "Noah Kim", points: 11820 },
+    { rank: 3, user: "Lina Patel", points: 10940 },
   ],
 };
 

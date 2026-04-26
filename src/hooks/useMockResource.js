@@ -1,39 +1,50 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useRef } from 'react'
 
 export function useMockResource(loader, deps = []) {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const loaderRef = useRef(loader)
+  const [state, dispatch] = useReducer(
+    (current, action) => {
+      switch (action.type) {
+        case 'loading':
+          return { ...current, loading: true, error: null }
+        case 'success':
+          return { data: action.payload, loading: false, error: null }
+        case 'error':
+          return { ...current, loading: false, error: action.payload }
+        default:
+          return current
+      }
+    },
+    { data: null, loading: true, error: null },
+  )
 
   useEffect(() => {
-    let active = true;
+    loaderRef.current = loader
+  }, [loader])
 
-    async function run() {
-      setLoading(true);
-      setError(null);
+  useEffect(() => {
+    let active = true
 
-      try {
-        const result = await loader();
-        if (active) {
-          setData(result);
-        }
-      } catch (err) {
-        if (active) {
-          setError(err);
-        }
-      } finally {
-        if (active) {
-          setLoading(false);
-        }
-      }
-    }
+    dispatch({ type: 'loading' })
 
-    run();
+    Promise.resolve()
+      .then(() => loaderRef.current())
+      .then((result) => {
+        if (active) {
+          dispatch({ type: 'success', payload: result })
+        }
+      })
+      .catch((err) => {
+        if (active) {
+          dispatch({ type: 'error', payload: err })
+        }
+      })
 
     return () => {
-      active = false;
-    };
-  }, deps);
+      active = false
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, deps)
 
-  return { data, loading, error };
+  return state
 }

@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 
 export function TodayChallengeCard({ challenge }) {
   return (
-    <Card className="h-full border border-white/10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.06),transparent_24%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.016))] text-white">
+    <Card className="h-full !border !border-white/10 !bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_24%),linear-gradient(180deg,#121212,#0d0d0d)] !text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
       <CardHeader>
         <CardTitle>Today&apos;s Challenge</CardTitle>
         <CardDescription className="text-white/45">
@@ -44,7 +44,7 @@ export function TodayChallengeCard({ challenge }) {
           </div>
         </div>
       </CardContent>
-      <CardFooter className="border-white/10 bg-black/20">
+      <CardFooter className="border-white/10 !bg-[#181818]">
         <Button asChild className="ml-auto rounded-xl bg-white text-black hover:bg-white/90">
           <Link to={challenge.href}>
           Start challenge
