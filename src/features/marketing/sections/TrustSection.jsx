@@ -3,7 +3,7 @@ import { trustStats } from "../data/marketingData";
 
 export function TrustSection() {
   return (
-    <section className="mt-6">
+    <section className="mt-20 lg:mt-30">
       <SectionHeading
         label="What You Get"
         title="Everything included in the platform"

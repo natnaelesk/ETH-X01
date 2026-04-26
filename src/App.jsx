@@ -16,7 +16,7 @@ import PythonChallengePage from './Components/PythonChallengePage';
 import PythonChallengeDetailsPage from './Components/PythonChallengeDetailsPage';
 import PythonAdminPanel from "./Components/PythonAdminPanel";
 import PythonBulkUploader from "./Components/PythonBulkUploader";
-import { LandingPage } from "../features/marketing/page/LandingPage";
+import { LandingPage } from "./features/marketing/page/LandingPage";
 
 const App = () => {
 

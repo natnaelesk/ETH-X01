@@ -8,7 +8,7 @@ export function HowItWorksSection() {
       <SectionHeading
         label="How It Works"
         title="A simple system that keeps you moving"
-        align="center"
+        align="start"
       />
 
       <div className="mt-10 grid gap-4 md:grid-cols-3">

@@ -11,7 +11,7 @@ const groupedTopics = [
 
 export function FeatureHighlightReverse() {
   return (
-    <section className="mt-20 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+    <section className="mt-20 lg:mb-30 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center ">
       <div className="order-2 rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 sm:p-6 lg:order-1">
         <div className="grid gap-4 rounded-[1.5rem] border border-white/10 bg-black/65 p-4 sm:grid-cols-[0.78fr_1.22fr]">
           <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4">

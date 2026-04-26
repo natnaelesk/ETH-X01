@@ -4,12 +4,12 @@ import { featurePanels, landingFeatures } from "../data/marketingData";
 
 export function FeaturesGridSection() {
   return (
-    <section id="features" className="mt-20">
+    <section id="features" className="mt-20 lg:mb-30">
       <SectionHeading
         label="Core Features"
         title="Designed for focused learning"
         description="The platform combines structured DSA prep, daily problem solving, rankings, and Python fundamentals in one place."
-        align="center"
+        align="start"
       />
 
       <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-4">

@@ -16,7 +16,7 @@ export function HeroSection() {
         </p>
 
         <h1 className="mx-auto mt-6 max-w-4xl text-4xl font-semibold leading-[0.94] tracking-tight text-white sm:text-5xl lg:text-[4.8rem]">
-          <span className="text-5xl"> Master DSA with structured practice, </span> <br /> <span className="text-4xl"> daily challenges, and real progress tracking. </span>
+          <span className="text-2xl md:text-5xl"> Master DSA with structured practice, </span> <br /> <span className="text-2xl md:text-4xl"> daily challenges, and real progress tracking. </span>
         </h1>
 
         <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-white/60 sm:text-lg">
@@ -48,7 +48,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <div className="relative mt-10 lg:mt-14">
+      <div className="relative mt-20 lg:mt-10 ">
         <DashboardPreview />
       </div>
     </section>
