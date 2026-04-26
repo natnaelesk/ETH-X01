@@ -20,6 +20,7 @@ import { PublicLayout } from "./components/layout/PublicLayout";
 import { DashboardPage } from "./features/dashboard/pages/DashboardPage";
 import { DashboardWorkspacePage } from "./features/dashboard/pages/DashboardWorkspacePage";
 import { DsaTopicsPage } from "./features/dsa/pages/DsaTopicsPage";
+import { PythonTrackPage } from "./features/pythonTrack/pages/PythonTrackPage";
 import { LandingPage } from "./features/marketing/page/LandingPage";
 
 const App = () => {
@@ -147,7 +148,7 @@ const App = () => {
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="dsa" element={<DsaTopicsPage />} />
-          <Route path="python" element={<DashboardWorkspacePage />} />
+          <Route path="python" element={<PythonTrackPage />} />
           <Route path="challenges" element={<DashboardWorkspacePage />} />
           <Route path="leaderboard" element={<DashboardWorkspacePage />} />
           <Route path="profile" element={<DashboardWorkspacePage />} />
