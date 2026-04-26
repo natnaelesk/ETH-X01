@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { PublicNavbar } from "./components/layout/PublicNavbar";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import ChallengePage from "./pages/ChallengePage";
@@ -16,7 +15,12 @@ import PythonChallengePage from './Components/PythonChallengePage';
 import PythonChallengeDetailsPage from './Components/PythonChallengeDetailsPage';
 import PythonAdminPanel from "./Components/PythonAdminPanel";
 import PythonBulkUploader from "./Components/PythonBulkUploader";
-import { LandingPage } from "../features/marketing/page/LandingPage";
+import { DashboardLayout } from "./components/layout/DashboardLayout";
+import { PublicLayout } from "./components/layout/PublicLayout";
+import { DashboardPage } from "./features/dashboard/pages/DashboardPage";
+import { DashboardWorkspacePage } from "./features/dashboard/pages/DashboardWorkspacePage";
+import { DsaTopicsPage } from "./features/dsa/pages/DsaTopicsPage";
+import { LandingPage } from "./features/marketing/page/LandingPage";
 
 const App = () => {
 
@@ -100,52 +104,55 @@ const App = () => {
 
   return (
     <Router>
-      <div className="bg-surface min-h-screen flex flex-col">
-        <PublicNavbar />
-        <main className="flex-grow relative z-10 ">
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/discover" element={<UnderConstruction />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/discussion" element={<DiscussionPanel />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/bulk-upload" element={<BulkUploader />} />
-            <Route path="/profile/:id" element={<ProfilePage />} />
-             {/* LeetCode challenges */}
-            <Route
-              path="/leetcode"
-              element={
-                <ChallengePage
-                  challenges={challenges}
-                  leaderboard={leaderboardLoading ? null : leaderboard}
-                  isLoggedIn={isLoggedIn}
-                />
-              }
-            />
-            <Route path="/leetcode/:id" element={<ChallengeDetailPage />} />
+      <Routes>
+        <Route element={<PublicLayout user={user} />}>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/discover" element={<UnderConstruction />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/discussion" element={<DiscussionPanel />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/bulk-upload" element={<BulkUploader />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route
+            path="/leetcode"
+            element={
+              <ChallengePage
+                challenges={challenges}
+                leaderboard={leaderboardLoading ? null : leaderboard}
+                isLoggedIn={isLoggedIn}
+              />
+            }
+          />
+          <Route path="/leetcode/:id" element={<ChallengeDetailPage />} />
+          <Route
+            path="/python-crash-course"
+            element={
+              <PythonChallengePage
+                isLoggedIn={isLoggedIn}
+                challenges={pythonChallenges}
+                leaderboard={leaderboardLoading ? null : leaderboard}
+                loading={pythonChallengesLoading}
+              />
+            }
+          />
+          <Route
+            path="/python-crash-course/:id"
+            element={<PythonChallengeDetailsPage isLoggedIn={isLoggedIn} />}
+          />
+          <Route path="/admin/python-challenges" element={<PythonAdminPanel />} />
+          <Route path="/bulk-upload-python" element={<PythonBulkUploader />} />
+        </Route>
 
-            {/* Python challenges */}
-            <Route
-              path="/python-crash-course"
-              element={
-                <PythonChallengePage
-                  isLoggedIn={isLoggedIn}
-                  challenges={pythonChallenges}
-                  leaderboard={leaderboardLoading ? null : leaderboard}
-                  loading={pythonChallengesLoading}
-                />
-              }
-            />
-            <Route
-              path="/python-crash-course/:id"
-              element={<PythonChallengeDetailsPage isLoggedIn={isLoggedIn} />}
-            />
-            <Route path="/admin/python-challenges" element={<PythonAdminPanel />} />
-            <Route path="/bulk-upload-python" element={<PythonBulkUploader />} />
-          </Routes>
-        </main>
-      </div>
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="dsa" element={<DsaTopicsPage />} />
+          <Route path="python" element={<DashboardWorkspacePage />} />
+          <Route path="challenges" element={<DashboardWorkspacePage />} />
+          <Route path="leaderboard" element={<DashboardWorkspacePage />} />
+          <Route path="profile" element={<DashboardWorkspacePage />} />
+        </Route>
+      </Routes>
     </Router>
   );
 };

@@ -12,7 +12,7 @@ const highlightItems = [
 
 export function FeatureHighlightSection() {
   return (
-    <section className="mt-20 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+    <section className="lg:mt-50 mt-30 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
       <div>
         <SectionHeading
           label="Built for Focus"

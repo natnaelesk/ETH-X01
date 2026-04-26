@@ -18,19 +18,19 @@ const topicLabels = ["Arr", "Str", "Tre", "Gra", "DP", "Rec", "SQL"];
 
 export function DashboardPreview() {
   return (
-    <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] sm:p-6">
+    <div className=" relative overflow-hidden rounded-[2rem] border border-white/10 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] sm:p-6">
       <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/14 blur-3xl" />
       <div className="pointer-events-none absolute right-10 top-8 h-24 w-24 rounded-full bg-white/8 blur-2xl" />
 
       <div className="relative space-y-4">
-        <div className="flex flex-col gap-3 rounded-[1.5rem] border border-white/10 bg-black/70 p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 rounded-[1.5rem]  p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-white/35">
               Problem Library
             </p>
             <h3 className="mt-2 text-xl font-semibold text-white">Topic: Arrays</h3>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 text-sm text-white/70">
+          <div className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-white/70">
             <Search className="h-4 w-4" />
             Search problems...
           </div>
@@ -40,7 +40,7 @@ export function DashboardPreview() {
           {previewStats.map(([label, value]) => (
             <div
               key={label}
-              className="rounded-[1.35rem] border border-white/10 bg-white/[0.03] p-4"
+              className="rounded-[1.35rem] border border-white/10 p-4"
             >
               <p className="text-xs uppercase tracking-[0.24em] text-white/35">
                 {label}
@@ -52,8 +52,8 @@ export function DashboardPreview() {
           ))}
         </div>
 
-        <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
-          <div className="rounded-[1.5rem] border border-white/10 bg-black/60 p-5">
+        <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr] ">
+          <div className="rounded-[1.5rem] border border-white/10 p-5">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-white/45">Browse by pattern</p>
@@ -79,7 +79,7 @@ export function DashboardPreview() {
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+          <div className="rounded-[1.5rem]  p-5">
             <p className="text-sm text-white/45">Filters</p>
             <div className="mt-4 space-y-3">
               {filterItems.map(([topic, count]) => (

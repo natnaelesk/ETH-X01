@@ -12,7 +12,10 @@ const topicCoverageLabels = ["Arr", "Gra", "Tre", "Str", "DP", "Py", "CF"];
 
 export function ProductPreviewSection() {
   return (
-    <section className="mt-20 rounded-[2.5rem] border border-white/10 bg-white/[0.03] px-5 py-6 sm:px-8 sm:py-8">
+    <section
+      id="product-preview"
+      className="mt-20 rounded-[2.5rem] border border-white/10 bg-white/[0.03] px-5 py-6 sm:px-8 sm:py-8"
+    >
       <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
         <div>
           <SectionHeading

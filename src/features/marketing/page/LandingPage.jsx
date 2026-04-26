@@ -2,7 +2,7 @@ import { CTASection } from "../sections/CTASection";
 import { FeatureHighlightReverse } from "../sections/FeatureHighlightReverse";
 import { FeatureHighlightSection } from "../sections/FeatureHighlightSection";
 import { FeaturesGridSection } from "../sections/FeaturesGridSection";
-import { FooterSection } from "../sections/FooterSection";
+import { Footer } from "@/components/layout/Footer";
 import { HeroSection } from "../sections/HeroSection";
 import { HowItWorksSection } from "../sections/HowItWorksSection";
 import { ProductPreviewSection } from "../sections/ProductPreviewSection";
@@ -20,7 +20,7 @@ export function LandingPage() {
         <HowItWorksSection />
         <ProductPreviewSection />
         <CTASection />
-        <FooterSection />
+        <Footer />
       </div>
     </main>
   );
