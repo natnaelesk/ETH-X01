@@ -21,6 +21,8 @@ import { ChallengesPage } from "./features/challenges/pages/ChallengesPage";
 import { DashboardPage } from "./features/dashboard/pages/DashboardPage";
 import { DashboardWorkspacePage } from "./features/dashboard/pages/DashboardWorkspacePage";
 import { DsaTopicsPage } from "./features/dsa/pages/DsaTopicsPage";
+import { LeaderboardPage } from "./features/Leaderboard/pages/LeaderboardPage";
+import { ProfilePage as DashboardProfilePage } from "./features/profile/pages/ProfilePage";
 import { PythonTrackPage } from "./features/pythonTrack/pages/PythonTrackPage";
 import { LandingPage } from "./features/marketing/page/LandingPage";
 
@@ -151,8 +153,8 @@ const App = () => {
           <Route path="dsa" element={<DsaTopicsPage />} />
           <Route path="python" element={<PythonTrackPage />} />
           <Route path="challenges" element={<ChallengesPage />} />
-          <Route path="leaderboard" element={<DashboardWorkspacePage />} />
-          <Route path="profile" element={<DashboardWorkspacePage />} />
+          <Route path="leaderboard" element={<LeaderboardPage />} />
+          <Route path="profile" element={<DashboardProfilePage />} />
         </Route>
       </Routes>
     </Router>
