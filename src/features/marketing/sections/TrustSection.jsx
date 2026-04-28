@@ -14,12 +14,12 @@ export function TrustSection() {
         {trustStats.map((item) => (
           <article
             key={item.label}
-            className="rounded-[1.5rem] border border-white/10 bg-white/[0.02] px-5 py-4"
+            className="neo-panel neo-panel-hover px-5 py-4"
           >
-            <p className="text-xs uppercase tracking-[0.26em] text-white/35">
+            <p className="text-xs font-black uppercase tracking-[0.26em] text-black">
               {item.label}
             </p>
-            <p className="mt-3 text-sm leading-7 text-white/58">
+            <p className="mt-3 text-sm font-bold leading-7 text-black">
               {item.description}
             </p>
           </article>

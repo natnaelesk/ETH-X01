@@ -14,29 +14,29 @@ import { formatPercent } from "@/utils/format";
 
 export function ContinueLearningCard({ lesson }) {
   return (
-    <Card className="h-full !border !border-white/10 !bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_24%),linear-gradient(180deg,#121212,#0d0d0d)] !text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)]">
+    <Card className="neo-panel neo-panel-hover h-full !border-4 !border-black !bg-[#C4B5FD] !text-black !shadow-[8px_8px_0px_0px_#000]">
       <CardHeader>
-        <CardTitle>Continue Learning</CardTitle>
-        <CardDescription className="text-white/45">
+        <CardTitle className="text-2xl font-black uppercase">Continue Learning</CardTitle>
+        <CardDescription className="font-bold text-black">
           Pick up the next lesson without losing context.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+        <div className="border-4 border-black bg-white p-4 shadow-[4px_4px_0px_0px_#000]">
           <div className="flex items-start justify-between gap-4">
             <div className="space-y-2">
-              <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-white/72">
+              <div className="rounded-full border-4 border-black bg-[#FFD93D] px-2.5 py-1 text-[11px] font-black uppercase tracking-[0.16em] text-black shadow-[4px_4px_0px_0px_#000]">
                 <BookOpen className="mr-2 h-3.5 w-3.5" />
                 Recommended next
               </div>
-              <h3 className="text-lg font-semibold text-white">{lesson.title}</h3>
-              <p className="text-sm leading-6 text-white/58">{lesson.description}</p>
+              <h3 className="text-lg font-black uppercase text-black">{lesson.title}</h3>
+              <p className="text-sm font-bold leading-6 text-black">{lesson.description}</p>
             </div>
           </div>
         </div>
 
         <div className="space-y-2">
-          <div className="flex items-center justify-between text-sm text-white/45">
+          <div className="flex items-center justify-between text-sm font-bold uppercase text-black">
             <span>Progress</span>
             <span>{formatPercent(lesson.progress)}</span>
           </div>
@@ -44,20 +44,20 @@ export function ContinueLearningCard({ lesson }) {
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-sm text-white/45">Lessons done</p>
-            <p className="mt-1 text-base font-semibold text-white">
+          <div className="border-4 border-black bg-[#FFD93D] p-4 shadow-[4px_4px_0px_0px_#000]">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-black">Lessons done</p>
+            <p className="mt-1 text-base font-black uppercase text-black">
               {lesson.lessonsCompleted}/{lesson.totalLessons}
             </p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
-            <p className="text-sm text-white/45">Focus mode</p>
-            <p className="mt-1 text-base font-semibold text-white">Ready to resume</p>
+          <div className="border-4 border-black bg-white p-4 shadow-[4px_4px_0px_0px_#000]">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-black">Focus mode</p>
+            <p className="mt-1 text-base font-black uppercase text-black">Ready to resume</p>
           </div>
         </div>
       </CardContent>
-      <CardFooter className="border-white/10 !bg-[#181818]">
-        <Button asChild className="ml-auto rounded-xl bg-white text-black hover:bg-white/90">
+      <CardFooter className="border-t-4 border-black !bg-transparent">
+        <Button asChild className="neo-button ml-auto">
           <Link to={lesson.href}>
           Resume learning
           <PlayCircle className="h-4 w-4" />

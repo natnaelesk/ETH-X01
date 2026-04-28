@@ -42,8 +42,8 @@ export function DashboardLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-black text-slate-100">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_22%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.04),transparent_24%)]" />
+    <div className="neo-scope neo-grid-bg neo-noise-bg min-h-screen text-black">
+      <div className="pointer-events-none fixed inset-0 opacity-40" />
       <div className="relative flex min-h-screen">
         <DashboardSidebar
           collapsed={collapsed}

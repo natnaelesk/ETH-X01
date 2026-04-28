@@ -18,19 +18,20 @@ const topicLabels = ["Arr", "Str", "Tre", "Gra", "DP", "Rec", "SQL"];
 
 export function DashboardPreview() {
   return (
-    <div className=" relative overflow-hidden rounded-[2rem] border border-white/10 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.02)] sm:p-6">
-      <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-white/14 blur-3xl" />
-      <div className="pointer-events-none absolute right-10 top-8 h-24 w-24 rounded-full bg-white/8 blur-2xl" />
+    <div className="neo-panel relative overflow-hidden bg-white p-4 sm:p-6">
+      <div className="neo-grid-bg pointer-events-none absolute inset-0 opacity-35" />
+      <div className="pointer-events-none absolute -right-10 top-4 h-18 w-18 rotate-12 border-4 border-black bg-[#FFD93D]" />
+      <div className="pointer-events-none absolute right-14 top-12 h-10 w-10 -rotate-12 border-4 border-black bg-[#FF6B6B]" />
 
       <div className="relative space-y-4">
-        <div className="flex flex-col gap-3 rounded-[1.5rem]  p-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-xs uppercase tracking-[0.28em] text-white/35">
+            <p className="text-xs font-black uppercase tracking-[0.28em] text-black">
               Problem Library
             </p>
-            <h3 className="mt-2 text-xl font-semibold text-white">Topic: Arrays</h3>
+            <h3 className="mt-2 text-xl font-black uppercase text-black">Topic: Arrays</h3>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-white/70">
+          <div className="neo-pill">
             <Search className="h-4 w-4" />
             Search problems...
           </div>
@@ -40,12 +41,12 @@ export function DashboardPreview() {
           {previewStats.map(([label, value]) => (
             <div
               key={label}
-              className="rounded-[1.35rem] border border-white/10 p-4"
+              className="border-4 border-black bg-[#FFFDF5] p-4 shadow-[4px_4px_0px_0px_#000]"
             >
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-black">
                 {label}
               </p>
-              <p className="mt-4 text-3xl font-semibold tracking-tight text-white">
+              <p className="mt-4 text-3xl font-black uppercase tracking-tight text-black">
                 {value}
               </p>
             </div>
@@ -53,13 +54,13 @@ export function DashboardPreview() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr] ">
-          <div className="rounded-[1.5rem] border border-white/10 p-5">
+          <div className="border-4 border-black bg-[#C4B5FD] p-5 shadow-[6px_6px_0px_0px_#000]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-white/45">Browse by pattern</p>
-                <p className="mt-1 text-lg font-medium text-white">Popular topics</p>
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-black">Browse by pattern</p>
+                <p className="mt-1 text-lg font-black uppercase text-black">Popular topics</p>
               </div>
-              <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/60">
+              <span className="neo-pill bg-white">
                 Library view
               </span>
             </div>
@@ -67,31 +68,31 @@ export function DashboardPreview() {
             <div className="mt-8 flex h-44 items-end gap-3">
               {progressBars.map((bar, index) => (
                 <div key={topicLabels[index]} className="flex flex-1 flex-col items-center gap-3">
-                  <div className="flex h-full w-full items-end rounded-full bg-white/[0.04] p-1">
+                  <div className="flex h-full w-full items-end border-4 border-black bg-white p-1">
                     <div
-                      className="w-full rounded-full bg-white/85"
+                      className="w-full bg-[#FF6B6B]"
                       style={{ height: `${bar}%` }}
                     />
                   </div>
-                  <span className="text-xs text-white/35">{topicLabels[index]}</span>
+                  <span className="text-xs font-black uppercase text-black">{topicLabels[index]}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="rounded-[1.5rem]  p-5">
-            <p className="text-sm text-white/45">Filters</p>
+          <div className="border-4 border-black bg-[#FFD93D] p-5 shadow-[6px_6px_0px_0px_#000]">
+            <p className="text-sm font-bold uppercase tracking-[0.18em] text-black">Filters</p>
             <div className="mt-4 space-y-3">
               {filterItems.map(([topic, count]) => (
                 <div
                   key={topic}
-                  className="flex items-center justify-between rounded-[1rem] border border-white/10 bg-black/50 px-4 py-3"
+                  className="flex items-center justify-between border-4 border-black bg-white px-4 py-3 shadow-[4px_4px_0px_0px_#000]"
                 >
                   <div>
-                    <p className="text-sm font-medium text-white">{topic}</p>
-                    <p className="text-xs text-white/45">{count}</p>
+                    <p className="text-sm font-black uppercase text-black">{topic}</p>
+                    <p className="text-xs font-bold text-black">{count}</p>
                   </div>
-                  <span className="text-xs text-white/45">View</span>
+                  <span className="text-xs font-black uppercase text-black">View</span>
                 </div>
               ))}
             </div>

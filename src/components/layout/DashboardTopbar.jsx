@@ -10,10 +10,10 @@ export function DashboardTopbar({
   onLogout,
 }) {
   return (
-    <header className="sticky top-0 z-20 border-b border-white/10 bg-black/70 backdrop-blur-xl">
+    <header className="sticky top-0 z-20 border-b-4 border-black bg-[#FFFDF5]">
       <div className="flex items-center gap-3 px-4 py-4 md:px-6">
         <Button
-          className="border border-white/10 bg-white/[0.03] text-white hover:bg-white/6 md:hidden"
+          className="border-4 border-black bg-[#FFD93D] text-black shadow-[4px_4px_0px_0px_#000] hover:bg-[#FF6B6B] md:hidden"
           size="icon"
           variant="ghost"
           onClick={onOpenSidebar}
@@ -22,7 +22,7 @@ export function DashboardTopbar({
         </Button>
 
         <Button
-          className="hidden border border-white/10 bg-white/[0.03] text-white hover:bg-white/6 md:inline-flex"
+          className="hidden border-4 border-black bg-[#FFD93D] text-black shadow-[4px_4px_0px_0px_#000] hover:bg-[#C4B5FD] md:inline-flex"
           size="icon"
           variant="ghost"
           onClick={onToggleCollapse}
@@ -31,8 +31,8 @@ export function DashboardTopbar({
         </Button>
 
         <div className="min-w-0">
-          <p className="truncate text-sm font-medium text-white">{title}</p>
-          <p className="truncate text-xs text-white/40">Focused learning workspace</p>
+          <p className="truncate text-sm font-black uppercase tracking-[0.18em] text-black">{title}</p>
+          <p className="truncate text-xs font-bold text-black">Focused learning workspace</p>
         </div>
 
         <div className="ml-auto">

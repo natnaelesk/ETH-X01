@@ -7,35 +7,35 @@ export function TopicCard({ topic, list = false }) {
   return (
     <Card
       className={cn(
-        "!overflow-hidden !rounded-[1.75rem] !border !border-white/10 !bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.05),transparent_22%),linear-gradient(180deg,#111111,#0b0b0b)] !text-white shadow-[0_0_0_1px_rgba(255,255,255,0.02)]",
+        "neo-panel neo-panel-hover !overflow-hidden !rounded-none !border-4 !border-black !bg-white !text-black !shadow-[8px_8px_0px_0px_#000]",
         list ? "w-full" : "h-full",
       )}
     >
       <CardHeader className="space-y-5">
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-4">
-            <Badge className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/76" variant="outline">
+            <Badge className="rounded-full border-4 border-black bg-[#FFD93D] px-3 py-1 text-[11px] font-black uppercase tracking-[0.24em] text-black shadow-[4px_4px_0px_0px_#000]" variant="outline">
               {topic.category}
             </Badge>
-            <CardTitle className="text-[1.65rem] tracking-[-0.04em] !text-white">
+            <CardTitle className="text-[1.65rem] font-black uppercase tracking-[-0.04em] !text-black">
               {topic.title}
             </CardTitle>
           </div>
-          <Badge className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-white/70" variant="outline">
+          <Badge className="rounded-full border-4 border-black bg-[#C4B5FD] px-3 py-1 text-[11px] font-black uppercase tracking-[0.24em] text-black shadow-[4px_4px_0px_0px_#000]" variant="outline">
             {topic.lessons} lessons
           </Badge>
         </div>
-        <CardDescription className="max-w-[34ch] !text-base !leading-8 !text-white/56">
+        <CardDescription className="max-w-[34ch] !text-base !font-bold !leading-8 !text-black">
           {topic.description}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-3 pt-2">
-        <div className="flex items-center justify-between text-sm text-white/48">
+        <div className="flex items-center justify-between text-sm font-bold uppercase text-black">
           <span>Progress</span>
           <span>{topic.progress}%</span>
         </div>
         <ProgressBar
-          className="h-2.5 rounded-full bg-white/10 [&_[data-slot=progress-indicator]]:bg-[linear-gradient(90deg,#5b5bf6,#61a5ff)]"
+          className="h-3 bg-white"
           value={topic.progress}
         />
       </CardContent>
