@@ -89,76 +89,96 @@ const DiscussionPanel = () => {
   };
 
   return (
-    <div className="max-w-6xl  flex flex-col justify-end mx-auto p-6 bg-dark text-light rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-4 text-header text-primary font ">Discussion Panel</h2>
+    <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="neo-panel bg-white p-6 sm:p-8">
+        <p className="neo-kicker bg-[#FFD93D]">Community</p>
+        <h1 className="neo-display mt-4 text-4xl sm:text-5xl">Discussion</h1>
+        <p className="mt-3 max-w-2xl text-sm font-bold leading-7 text-black sm:text-base">
+          A simple discussion board for now. Ask questions, share progress, and help others move forward.
+        </p>
+      </div>
 
       {loading ? (
-        <p className="text-center text-light">Loading comments...</p>
+        <div className="neo-panel mt-6 bg-[#C4B5FD] p-6 text-black">
+          <p className="text-sm font-black uppercase tracking-[0.22em]">Loading</p>
+          <p className="mt-2 text-base font-bold">Fetching comments…</p>
+        </div>
       ) : (
         <>
-          <div
-            ref={scrollRef}
-            onScroll={handleScroll}
-            className="flex flex-col max-h-[55vh] overflow-y-auto mb-6 space-y-4"
-          >
+          <div className="neo-panel mt-6 bg-[#FFFDF5] p-4">
+            <div
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="flex max-h-[55vh] flex-col space-y-4 overflow-y-auto"
+            >
             {comments.length === 0 ? (
-              <p className="text-center text-gray-400 italic">
+              <p className="text-center text-sm font-bold text-black">
                 No comments yet. Be the first!
               </p>
             ) : (
               comments.map(({ id, userId, userName, photoURL, text, createdAt }) => (
-                <div key={id} className="flex items-start space-x-4">
+                <div key={id} className="border-4 border-black bg-white p-4 shadow-[4px_4px_0px_0px_#000]">
+                  <div className="flex items-start gap-4">
                   <Link to={`/profile/${userId}`}>
                     <img
                       src={photoURL || "https://www.gravatar.com/avatar/?d=mp&s=48"}
                       alt={userName}
-                      className="w-10 h-10 rounded-full object-cover"
+                      className="h-12 w-12 rounded-full border-4 border-black object-cover"
                     />
                   </Link>
                   <div>
                     <Link
                       to={`/profile/${userId}`}
-                      className="text-sm font-semibold hover:underline"
+                      className="text-sm font-black uppercase text-black hover:underline"
                     >
                       {userName}
                     </Link>
-                    <p className="text-gray-300">{text}</p>
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="mt-2 text-sm font-bold leading-7 text-black">{text}</p>
+                    <p className="mt-2 text-xs font-bold text-black/70">
                       {createdAt?.toDate
                         ? createdAt.toDate().toLocaleString()
                         : "just now"}
                     </p>
                   </div>
+                  </div>
                 </div>
               ))
             )}
+            </div>
           </div>
 
           {user ? (
-            <form onSubmit={handleSubmit} className="flex space-x-2">
+            <form onSubmit={handleSubmit} className="neo-panel mt-6 flex gap-2 bg-white p-4">
               <input
                 type="text"
                 placeholder="Write your comment..."
-                className="flex-grow border border-green-800 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="neo-focus-ring h-12 flex-1 border-4 border-black bg-[#FFFDF5] px-4 text-sm font-bold text-black placeholder:text-black/50 shadow-[4px_4px_0px_0px_#000] focus:bg-[#FFD93D]"
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
               />
               <button
                 type="submit"
-                className="bg-primary text-white px-4 py-2 rounded hover:bg-indigo-700 disabled:opacity-50"
+                className="neo-button"
                 disabled={newComment.trim() === ""}
               >
                 Post
               </button>
             </form>
           ) : (
-            <p className="text-center text-gray-500 italic">
-              Log in to join the discussion.
-            </p>
+            <div className="neo-panel mt-6 bg-[#FFD93D] p-6 text-black">
+              <p className="text-sm font-bold">
+                Log in to join the discussion. You can still browse freely.
+              </p>
+              <div className="mt-4">
+                <Link className="neo-button-ghost inline-flex" to="/login">
+                  Login
+                </Link>
+              </div>
+            </div>
           )}
         </>
       )}
-    </div>
+    </section>
   );
 };
 
