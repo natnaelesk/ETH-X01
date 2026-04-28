@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ProfilePage from "./pages/ProfilePage";
 import ChallengePage from "./pages/ChallengePage";
 import AdminPage from "./pages/AdminPage";
 import { db } from "./Firebase";
@@ -9,32 +8,21 @@ import ChallengeDetailPage from "./pages/ChallengeDetailPage";
 import DiscussionPanel from "./pages/DiscussionPage";
 import UnderConstruction from "./pages/UnderConstruction ";
 import BulkUploader from "./Components/BulkUploader";
-import PythonChallengePage from './Components/PythonChallengePage';
-import PythonChallengeDetailsPage from './Components/PythonChallengeDetailsPage';
 import PythonAdminPanel from "./Components/PythonAdminPanel";
 import PythonBulkUploader from "./Components/PythonBulkUploader";
-import { DashboardLayout } from "./components/layout/DashboardLayout";
 import { PublicLayout } from "./components/layout/PublicLayout";
-import { ChallengesPage } from "./features/challenges/pages/ChallengesPage";
-import { DashboardPage } from "./features/dashboard/pages/DashboardPage";
-import { DashboardWorkspacePage } from "./features/dashboard/pages/DashboardWorkspacePage";
-import { DsaTopicsPage } from "./features/dsa/pages/DsaTopicsPage";
-import { LeaderboardPage } from "./features/Leaderboard/pages/LeaderboardPage";
 import { LoginPage } from "./features/auth/pages/LoginPage";
 import { SignupPage } from "./features/auth/pages/SignupPage";
-import { ProfilePage as DashboardProfilePage } from "./features/profile/pages/ProfilePage";
+import { ProfilePage as AppProfilePage } from "./features/profile/pages/ProfilePage";
 import { PythonTrackPage } from "./features/pythonTrack/pages/PythonTrackPage";
 import { LandingPage } from "./features/marketing/page/LandingPage";
 import { useAuth } from "./app/useAuth";
 
 const App = () => {
-  const [pythonChallenges, setPythonChallenges] = useState([]);
-  const [pythonChallengesLoading, setPythonChallengesLoading] = useState(true);
   const [challenges, setChallenges] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(true);
   const { user } = useAuth();
-  const isLoggedIn = !!user;
 
   useEffect(() => {
     const fetchChallenges = async () => {
@@ -75,26 +63,6 @@ const App = () => {
     fetchLeaderboard();
   }, []);
 
-  useEffect(() => {
-    const fetchPythonChallenges = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "pythonChallenges"));
-        const fetchedChallenges = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log("✅ Fetched Python challenges:", fetchedChallenges);
-        setPythonChallenges(fetchedChallenges);
-      } catch (err) {
-        console.error("❌ Error loading Python challenges:", err);
-      } finally {
-        setPythonChallengesLoading(false);
-      }
-    };
-
-    fetchPythonChallenges();
-  }, []);
-
   return (
     <Router>
       <Routes>
@@ -103,48 +71,24 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/discover" element={<UnderConstruction />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<AppProfilePage />} />
           <Route path="/discussion" element={<DiscussionPanel />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/bulk-upload" element={<BulkUploader />} />
-          <Route path="/profile/:id" element={<ProfilePage />} />
+          <Route path="/profile/:id" element={<AppProfilePage />} />
           <Route
             path="/leetcode"
             element={
               <ChallengePage
                 challenges={challenges}
                 leaderboard={leaderboardLoading ? null : leaderboard}
-                isLoggedIn={isLoggedIn}
               />
             }
           />
           <Route path="/leetcode/:id" element={<ChallengeDetailPage />} />
-          <Route
-            path="/python-crash-course"
-            element={
-              <PythonChallengePage
-                isLoggedIn={isLoggedIn}
-                challenges={pythonChallenges}
-                leaderboard={leaderboardLoading ? null : leaderboard}
-                loading={pythonChallengesLoading}
-              />
-            }
-          />
-          <Route
-            path="/python-crash-course/:id"
-            element={<PythonChallengeDetailsPage isLoggedIn={isLoggedIn} />}
-          />
+          <Route path="/python-crash-course" element={<PythonTrackPage />} />
           <Route path="/admin/python-challenges" element={<PythonAdminPanel />} />
           <Route path="/bulk-upload-python" element={<PythonBulkUploader />} />
-        </Route>
-
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<DashboardPage />} />
-          <Route path="dsa" element={<DsaTopicsPage />} />
-          <Route path="python" element={<PythonTrackPage />} />
-          <Route path="challenges" element={<ChallengesPage />} />
-          <Route path="leaderboard" element={<LeaderboardPage />} />
-          <Route path="profile" element={<DashboardProfilePage />} />
         </Route>
       </Routes>
     </Router>
