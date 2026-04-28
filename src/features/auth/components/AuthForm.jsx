@@ -18,7 +18,7 @@ export function AuthForm({ mode }) {
   })
 
   const isSignup = mode === 'signup'
-  const destination = location.state?.from?.pathname || '/dashboard'
+  const destination = location.state?.from?.pathname || '/'
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -31,6 +31,21 @@ export function AuthForm({ mode }) {
         await login(form)
       }
 
+      navigate(destination, { replace: true })
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleSocialSignIn = async (provider) => {
+    setIsSubmitting(true)
+    try {
+      const payload = {
+        name: provider === 'google' ? 'Google Learner' : 'GitHub Learner',
+        email: provider === 'google' ? 'google.user@ethx01.dev' : 'github.user@ethx01.dev',
+        password: '',
+      }
+      await login(payload)
       navigate(destination, { replace: true })
     } finally {
       setIsSubmitting(false)
@@ -101,6 +116,32 @@ export function AuthForm({ mode }) {
               type="password"
               value={form.password}
             />
+          </div>
+
+          <div className="border-t-4 border-black pt-4">
+            <p className="text-xs font-black uppercase tracking-[0.22em] text-black">
+              Or continue with
+            </p>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              <button
+                className="neo-button-ghost h-12 w-full justify-center"
+                disabled={isSubmitting}
+                onClick={() => handleSocialSignIn('google')}
+                type="button"
+              >
+                <span className="text-lg">G</span>
+                Google
+              </button>
+              <button
+                className="neo-button-ghost h-12 w-full justify-center"
+                disabled={isSubmitting}
+                onClick={() => handleSocialSignIn('github')}
+                type="button"
+              >
+                <span className="text-lg">GH</span>
+                GitHub
+              </button>
+            </div>
           </div>
 
           <Button className="neo-button h-14 w-full" disabled={isSubmitting} type="submit">

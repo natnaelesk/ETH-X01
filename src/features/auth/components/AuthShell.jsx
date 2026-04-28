@@ -1,23 +1,5 @@
-import { ArrowLeft, BookOpenText, CheckCircle2, Sparkles, Trophy } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
-
-const highlights = [
-  {
-    icon: BookOpenText,
-    title: 'Structured learning paths',
-    description: 'Progress through DSA and Python with clear milestones, visible progress, and big visual cues.',
-  },
-  {
-    icon: Trophy,
-    title: 'Momentum you can measure',
-    description: 'Track streaks, completed challenges, and leaderboard position over time.',
-  },
-  {
-    icon: CheckCircle2,
-    title: 'Built for focus',
-    description: 'Thick borders, hard shadows, and fast interactions keep the experience deliberate.',
-  },
-]
 
 export function AuthShell({ title, description, children }) {
   return (
@@ -37,49 +19,12 @@ export function AuthShell({ title, description, children }) {
           </Link>
         </div>
 
-        <div className="grid flex-1 gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <section className="neo-panel relative overflow-hidden bg-[#FFD93D] p-8 lg:p-10">
-            <div className="neo-grid-bg absolute inset-0 opacity-25" />
-            <div className="pointer-events-none absolute right-6 top-6 h-16 w-16 rotate-12 border-4 border-black bg-[#FF6B6B]" />
-            <div className="pointer-events-none absolute bottom-8 left-8 h-10 w-10 -rotate-12 border-4 border-black bg-[#C4B5FD]" />
-            <div className="relative flex h-full flex-col justify-between gap-8">
-              <div className="space-y-6">
-                <div className="neo-kicker inline-flex items-center gap-2">
-                  <Sparkles className="h-3.5 w-3.5" />
-                  Developer learning workspace
-                </div>
-                <div className="space-y-3">
-                  <h1 className="neo-display max-w-xl text-3xl md:text-5xl">
-                    {title}
-                  </h1>
-                  <p className="max-w-2xl text-sm font-bold leading-7 text-black md:text-base">
-                    {description}
-                  </p>
-                </div>
-              </div>
-
-              <div className="grid gap-4">
-                {highlights.map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <div key={item.title} className="border-4 border-black bg-white p-5 shadow-[6px_6px_0px_0px_#000]">
-                      <div className="flex items-start gap-4">
-                        <div className="border-4 border-black bg-[#C4B5FD] p-3 text-black shadow-[4px_4px_0px_0px_#000]">
-                          <Icon className="h-5 w-5" />
-                        </div>
-                        <div className="space-y-1">
-                          <h2 className="text-sm font-black uppercase text-black">{item.title}</h2>
-                          <p className="text-sm font-bold leading-6 text-black">{item.description}</p>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
-              </div>
+        <div className="flex flex-1 items-center justify-center py-4">
+          <section className="w-full max-w-lg space-y-3">
+            <div className="neo-panel bg-[#FFD93D] px-6 py-5">
+              <h1 className="neo-display text-3xl md:text-4xl">{title}</h1>
+              <p className="mt-2 text-sm font-bold text-black">{description}</p>
             </div>
-          </section>
-
-          <section className="flex items-center justify-center">
             {children}
           </section>
         </div>
