@@ -1,7 +1,7 @@
 // PythonChallengeDetailsPage.jsx - 2025 DARK PURPLE UI
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { db, auth } from "../Firebase";
+import { db } from "../Firebase";
 import {
   collection,
   query,
@@ -14,19 +14,19 @@ import {
   increment,
   orderBy,
 } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
 import { getDoc } from "firebase/firestore";
+import { useAuth } from "../app/useAuth";
 
 const PythonChallengeDetailsPage = () => {
   const { id } = useParams();
   const [challenge, setChallenge] = useState(null);
-  const [user, setUser] = useState(null);
   const [code, setCode] = useState("");
   const [explanation, setExplanation] = useState("");
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const { user } = useAuth();
 
   const getEmbedUrl = (url) => {
   if (!url) return "";
@@ -55,30 +55,7 @@ const PythonChallengeDetailsPage = () => {
       }
     };
 
-    const fetchComments = async (challengeId) => {
-      try {
-        const commentsQuery = query(
-          collection(db, `pythonChallenges/${challengeId}/comments`),
-          orderBy("timestamp", "desc")
-        );
-        const commentsSnapshot = await getDocs(commentsQuery);
-        setComments(commentsSnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        })));
-      } catch (err) {
-        console.error("Error fetching comments:", err);
-      }
-    };
-
-    const fetchUser = () => {
-      onAuthStateChanged(auth, (u) => {
-        setUser(u);
-      });
-    };
-
     fetchChallenge();
-    fetchUser();
   }, [id]);
 
   const handleSubmit = async () => {

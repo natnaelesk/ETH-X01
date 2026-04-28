@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import ChallengePage from "./pages/ChallengePage";
 import AdminPage from "./pages/AdminPage";
@@ -9,7 +8,6 @@ import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import ChallengeDetailPage from "./pages/ChallengeDetailPage";
 import DiscussionPanel from "./pages/DiscussionPage";
 import UnderConstruction from "./pages/UnderConstruction ";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import BulkUploader from "./Components/BulkUploader";
 import PythonChallengePage from './Components/PythonChallengePage';
 import PythonChallengeDetailsPage from './Components/PythonChallengeDetailsPage';
@@ -22,29 +20,20 @@ import { DashboardPage } from "./features/dashboard/pages/DashboardPage";
 import { DashboardWorkspacePage } from "./features/dashboard/pages/DashboardWorkspacePage";
 import { DsaTopicsPage } from "./features/dsa/pages/DsaTopicsPage";
 import { LeaderboardPage } from "./features/Leaderboard/pages/LeaderboardPage";
+import { LoginPage } from "./features/auth/pages/LoginPage";
+import { SignupPage } from "./features/auth/pages/SignupPage";
 import { ProfilePage as DashboardProfilePage } from "./features/profile/pages/ProfilePage";
 import { PythonTrackPage } from "./features/pythonTrack/pages/PythonTrackPage";
 import { LandingPage } from "./features/marketing/page/LandingPage";
+import { useAuth } from "./app/useAuth";
 
 const App = () => {
-
   const [pythonChallenges, setPythonChallenges] = useState([]);
   const [pythonChallengesLoading, setPythonChallengesLoading] = useState(true);
-
-  const [user, setUser] = useState(null);
   const [challenges, setChallenges] = useState([]);
   const [leaderboard, setLeaderboard] = useState([]);
   const [leaderboardLoading, setLeaderboardLoading] = useState(true);
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-    });
-
-    return () => unsubscribe();
-  }, []);
-
+  const { user } = useAuth();
   const isLoggedIn = !!user;
 
   useEffect(() => {
@@ -112,6 +101,7 @@ const App = () => {
         <Route element={<PublicLayout user={user} />}>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
           <Route path="/discover" element={<UnderConstruction />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/discussion" element={<DiscussionPanel />} />

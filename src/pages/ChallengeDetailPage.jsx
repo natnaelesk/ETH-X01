@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { db, auth } from "../Firebase";
+import { db } from "../Firebase";
 import SubmissionStatus from "../Components/SubmissionStatus"; // adjust path as needed
+import { useAuth } from "../app/useAuth";
 
 import {
   doc,
@@ -15,15 +16,14 @@ import {
   arrayUnion,
   increment,
 } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
 
 const ChallengeDetailsPage = () => {
   const [submissionStatus, setSubmissionStatus] = useState("idle"); // idle | loading | success | error
   const { id } = useParams();
   const [challenge, setChallenge] = useState(null);
   const [submissions, setSubmissions] = useState([]);
-  const [user, setUser] = useState(null);
   const [answers, setAnswers] = useState({});
+  const { user } = useAuth();
 
   useEffect(() => {
     const fetchChallenge = async () => {
@@ -32,12 +32,6 @@ const ChallengeDetailsPage = () => {
       if (snap.exists()) {
         setChallenge({ id: snap.id, ...snap.data() });
       }
-    };
-
-    const fetchUser = () => {
-      onAuthStateChanged(auth, (u) => {
-        if (u) setUser(u);
-      });
     };
 
     const fetchSubmissions = async () => {
@@ -50,7 +44,6 @@ const ChallengeDetailsPage = () => {
     };
 
     fetchChallenge();
-    fetchUser();
     fetchSubmissions();
   }, [id]);
 
