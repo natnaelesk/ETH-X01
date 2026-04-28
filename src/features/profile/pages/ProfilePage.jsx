@@ -9,13 +9,13 @@ import { Badge } from '../../../components/ui/badge'
 function ProfileSkeleton() {
   return (
     <div className="space-y-6">
-      <Skeleton className="h-24 w-full rounded-[1.75rem] bg-black/40" />
-      <div className="rounded-[2.25rem] border border-white/10 bg-black p-6">
+      <Skeleton className="h-24 w-full border-4 border-black bg-[#FFD93D]" />
+      <div className="border-4 border-black bg-[#FFFDF5] p-6 shadow-[8px_8px_0px_0px_#000]">
         <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
-          <Skeleton className="h-[340px] w-full rounded-[1.75rem] bg-black/40" />
+          <Skeleton className="h-[340px] w-full border-4 border-black bg-[#C4B5FD]" />
           <div className="grid gap-4 md:grid-cols-2">
             {Array.from({ length: 4 }).map((_, index) => (
-              <Skeleton key={index} className="h-40 w-full rounded-[1.5rem] bg-black/40" />
+              <Skeleton key={index} className="h-40 w-full border-4 border-black bg-white" />
             ))}
           </div>
         </div>
@@ -47,52 +47,50 @@ export function ProfilePage() {
   return (
     <div className="space-y-6">
       <section className="space-y-3">
-        <p className="text-[11px] font-medium uppercase tracking-[0.32em] text-white/45">
+        <p className="neo-kicker">
           Account
         </p>
-        <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+        <h1 className="neo-display text-4xl sm:text-5xl">
           Profile
         </h1>
-        <p className="max-w-2xl text-sm leading-7 text-white/58 sm:text-base">
+        <p className="max-w-2xl text-sm font-bold leading-7 text-black sm:text-base">
           Review your learning snapshot, account details, and the story behind your progress.
         </p>
       </section>
 
-      <section className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-black p-5 sm:p-6">
+      <section className="neo-panel relative overflow-hidden bg-[#FFD93D] p-5 sm:p-6">
         <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
-          <Card className="!border !border-white/10 !bg-black text-white">
+          <Card className="neo-panel !border-4 !border-black !bg-white !text-black !shadow-[8px_8px_0px_0px_#000]">
             <CardContent className="!p-5">
-              {/* REMOVED AVATAR */}
-
               <div className="space-y-1">
-                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                <h2 className="text-2xl font-black uppercase tracking-tight text-black">
                   {displayName}
                 </h2>
-                <p className="text-sm text-white/58">{displayRole}</p>
+                <p className="text-sm font-bold text-black">{displayRole}</p>
                 <Badge
-                  className="rounded-full border-white/10 bg-white/5 px-3 py-1 text-[11px] tracking-[0.24em] text-white/80"
+                  className="rounded-full border-4 border-black bg-[#C4B5FD] px-3 py-1 text-[11px] font-black uppercase tracking-[0.24em] text-black shadow-[4px_4px_0px_0px_#000]"
                   variant="outline"
                 >
                   {displayLocation}
                 </Badge>
               </div>
 
-              <p className="mt-6 text-sm leading-8 text-white/62">
+              <p className="mt-6 text-sm font-bold leading-8 text-black">
                 {data.summary.bio}
               </p>
 
-              <div className="mt-6 rounded-[1.35rem] border border-white/10 bg-black/60 px-4 py-4">
-                <div className="flex items-center justify-between gap-4 border-b border-white/10 pb-4">
+              <div className="mt-6 border-4 border-black bg-[#FFFDF5] px-4 py-4 shadow-[4px_4px_0px_0px_#000]">
+                <div className="flex items-center justify-between gap-4 border-b-4 border-black pb-4">
                   <div className="flex items-center gap-3">
-                    <Mail className="h-4 w-4 text-white/42" />
-                    <p className="text-sm text-white/52">Email</p>
+                    <Mail className="h-4 w-4 text-black" />
+                    <p className="text-sm font-bold uppercase text-black">Email</p>
                   </div>
-                  <p className="text-sm font-medium text-white">{displayEmail}</p>
+                  <p className="text-sm font-black text-black">{displayEmail}</p>
                 </div>
 
                 <div className="flex items-center justify-between gap-4 pt-4">
-                  <p className="text-sm text-white/52">Joined</p>
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-bold uppercase text-black">Joined</p>
+                  <p className="text-sm font-black text-black">
                     {data.summary.joined}
                   </p>
                 </div>
@@ -104,16 +102,16 @@ export function ProfilePage() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="min-h-[152px] rounded-xl border border-white/10 bg-black/70 text-white"
+                className="min-h-[152px] border-4 border-black bg-white text-black shadow-[6px_6px_0px_0px_#000]"
               >
                 <div className="flex h-full flex-col p-5">
-                  <p className="text-sm font-medium text-white">
+                  <p className="text-sm font-bold uppercase tracking-[0.18em] text-black">
                     {stat.label}
                   </p>
-                  <p className="mt-8 text-4xl font-semibold tracking-tight text-white">
+                  <p className="mt-8 text-4xl font-black uppercase tracking-tight text-black">
                     {stat.value}
                   </p>
-                  <p className="mt-auto pt-4 text-sm leading-6 text-white/42">
+                  <p className="mt-auto pt-4 text-sm font-bold leading-6 text-black">
                     {stat.hint}
                   </p>
                 </div>

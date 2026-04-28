@@ -19,27 +19,24 @@ export function PublicNavbar({ user = null }) {
   const isLoggedIn = Boolean(user);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-40 border-b-4 border-black bg-[#FFFDF5]">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6">
-
-        {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-white">
+          <div className="flex h-11 w-11 items-center justify-center border-4 border-black bg-[#FF6B6B] text-lg font-black text-black shadow-[4px_4px_0px_0px_#000]">
             E
           </div>
-          <span className="text-sm font-semibold tracking-widest text-white">
+          <span className="text-sm font-black uppercase tracking-[0.28em] text-black">
             ETH-X01
           </span>
         </Link>
 
-        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
           {navItems.map((item) =>
             item.anchor ? (
               <a
                 key={item.label}
                 href={item.href}
-                className="rounded-xl px-3 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 transition"
+                className="neo-focus-ring border-4 border-transparent px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-black transition hover:border-black hover:bg-[#FFD93D] hover:shadow-[4px_4px_0px_0px_#000]"
               >
                 {item.label}
               </a>
@@ -47,7 +44,7 @@ export function PublicNavbar({ user = null }) {
               <Link
                 key={item.label}
                 to={item.href}
-                className="rounded-xl px-3 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 transition"
+                className="neo-focus-ring border-4 border-transparent px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-black transition hover:border-black hover:bg-[#FFD93D] hover:shadow-[4px_4px_0px_0px_#000]"
               >
                 {item.label}
               </Link>
@@ -55,12 +52,11 @@ export function PublicNavbar({ user = null }) {
           )}
         </nav>
 
-        {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-2">
           {isLoggedIn ? (
             <Link
               to="/dashboard"
-              className="rounded-xl bg-white text-black px-4 py-2 text-sm font-medium hover:bg-white/90 transition"
+              className="neo-button-secondary neo-focus-ring"
             >
               Dashboard
             </Link>
@@ -68,13 +64,13 @@ export function PublicNavbar({ user = null }) {
             <>
               <Link
                 to="/login"
-                className="rounded-xl px-3 py-2 text-sm text-white/60 hover:text-white hover:bg-white/5 transition"
+                className="neo-focus-ring border-4 border-transparent px-3 py-2 text-sm font-bold uppercase tracking-[0.14em] text-black transition hover:border-black hover:bg-white hover:shadow-[4px_4px_0px_0px_#000]"
               >
                 Login
               </Link>
               <Link
                 to="/signup"
-                className="rounded-xl bg-white text-black px-4 py-2 text-sm font-medium hover:bg-white/90 transition"
+                className="neo-button neo-focus-ring"
               >
                 Sign up
               </Link>
@@ -82,13 +78,12 @@ export function PublicNavbar({ user = null }) {
           )}
         </div>
 
-        {/* Mobile Menu */}
         <Sheet>
           <SheetTrigger asChild>
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-white hover:bg-white/5 rounded-xl"
+              className="neo-focus-ring md:hidden border-4 border-black bg-[#FFD93D] text-black shadow-[4px_4px_0px_0px_#000] hover:bg-[#FF6B6B]"
             >
               <Menu className="h-6 w-6" />
             </Button>
@@ -96,19 +91,17 @@ export function PublicNavbar({ user = null }) {
 
           <SheetContent
             side="right"
-            className="w-[88vw] max-w-sm bg-black text-white border-white/10 p-0"
+            className="neo-scope w-[88vw] max-w-sm border-l-4 border-black bg-[#FFFDF5] p-0 text-black"
           >
-            {/* Header */}
-            <div className="px-5 py-6 border-b border-white/10">
+            <div className="border-b-4 border-black bg-[#C4B5FD] px-5 py-6">
               <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-2xl border border-white/10 flex items-center justify-center">
+                <div className="flex h-10 w-10 items-center justify-center border-4 border-black bg-[#FF6B6B] font-black shadow-[4px_4px_0px_0px_#000]">
                   E
                 </div>
-                <p className="text-sm font-semibold">ETH-X01</p>
+                <p className="text-sm font-black uppercase tracking-[0.28em]">ETH-X01</p>
               </div>
             </div>
 
-            {/* Nav */}
             <div className="px-3 py-4 flex flex-col gap-1">
               {navItems.map((item) => {
                 const Icon = item.icon;
@@ -117,9 +110,9 @@ export function PublicNavbar({ user = null }) {
                   <SheetClose asChild key={item.label}>
                     <a
                       href={item.href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-white/70 hover:text-white hover:bg-white/5 transition"
+                      className="neo-focus-ring flex items-center gap-3 border-4 border-transparent px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black transition hover:border-black hover:bg-white hover:shadow-[4px_4px_0px_0px_#000]"
                     >
-                      <Icon className="h-4 w-4 opacity-70" />
+                      <Icon className="h-4 w-4" />
                       {item.label}
                     </a>
                   </SheetClose>
@@ -127,9 +120,9 @@ export function PublicNavbar({ user = null }) {
                   <SheetClose asChild key={item.label}>
                     <Link
                       to={item.href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-white/70 hover:text-white hover:bg-white/5 transition"
+                      className="neo-focus-ring flex items-center gap-3 border-4 border-transparent px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-black transition hover:border-black hover:bg-white hover:shadow-[4px_4px_0px_0px_#000]"
                     >
-                      <Icon className="h-4 w-4 opacity-70" />
+                      <Icon className="h-4 w-4" />
                       {item.label}
                     </Link>
                   </SheetClose>
@@ -137,13 +130,12 @@ export function PublicNavbar({ user = null }) {
               })}
             </div>
 
-            {/* Actions */}
-            <div className="mt-auto px-3 pb-6 pt-4 border-t border-white/10 flex flex-col gap-2">
+            <div className="mt-auto flex flex-col gap-2 border-t-4 border-black px-3 pb-6 pt-4">
               {isLoggedIn ? (
                 <SheetClose asChild>
                   <Link
                     to="/dashboard"
-                    className="rounded-xl bg-white text-black px-4 py-3 text-center text-sm font-medium hover:bg-white/90 transition"
+                    className="neo-button-secondary neo-focus-ring text-center"
                   >
                     Dashboard
                   </Link>
@@ -153,7 +145,7 @@ export function PublicNavbar({ user = null }) {
                   <SheetClose asChild>
                     <Link
                       to="/login"
-                      className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm text-white/70 hover:text-white hover:bg-white/5 transition"
+                      className="neo-button-ghost neo-focus-ring"
                     >
                       <LogIn className="h-4 w-4" />
                       Login
@@ -163,7 +155,7 @@ export function PublicNavbar({ user = null }) {
                   <SheetClose asChild>
                     <Link
                       to="/signup"
-                      className="rounded-xl bg-white text-black px-4 py-3 text-center text-sm font-semibold hover:bg-white/90 transition"
+                      className="neo-button neo-focus-ring text-center"
                     >
                       Sign up
                     </Link>

@@ -21,27 +21,27 @@ export function UserMenu({ user, onLogout }) {
       <summary
         className={cn(
           buttonVariants({ variant: "ghost" }),
-          "list-none cursor-pointer select-none rounded-full border border-white/10 bg-white/[0.03] pr-3 text-white hover:bg-white/6 hover:text-white",
+          "list-none cursor-pointer select-none rounded-full border-4 border-black bg-white pr-3 text-black shadow-[4px_4px_0px_0px_#000] hover:bg-[#FFD93D] hover:text-black",
         )}
       >
-        <Avatar className="h-8 w-8 border border-white/10 bg-white/[0.06]">
+        <Avatar className="h-8 w-8 border-4 border-black bg-[#C4B5FD]">
           <AvatarImage alt={user?.name || "Learner"} src={user?.photoURL || ""} />
-          <AvatarFallback className="bg-white/[0.08] text-white/80">
+          <AvatarFallback className="bg-[#C4B5FD] font-black text-black">
             {getInitials(user?.name)}
           </AvatarFallback>
         </Avatar>
-        <span className="hidden text-sm font-medium md:inline">{user?.name || "Learner"}</span>
-        <ChevronDown className="h-4 w-4 text-white/45 transition group-open:rotate-180" />
+        <span className="hidden text-sm font-black uppercase md:inline">{user?.name || "Learner"}</span>
+        <ChevronDown className="h-4 w-4 text-black transition group-open:rotate-180" />
       </summary>
 
-      <div className="absolute right-0 z-50 mt-2 w-56 rounded-2xl border border-white/10 bg-black/95 p-2 shadow-2xl shadow-black/50 backdrop-blur-xl">
-        <div className="border-b border-white/10 px-3 py-3">
-          <p className="text-sm font-medium text-white">{user?.name || "Learner"}</p>
-          <p className="text-xs text-white/45">{user?.email || "mira@example.com"}</p>
+      <div className="absolute right-0 z-50 mt-2 w-56 border-4 border-black bg-[#FFFDF5] p-2 text-black shadow-[8px_8px_0px_0px_#000]">
+        <div className="border-b-4 border-black px-3 py-3">
+          <p className="text-sm font-black uppercase text-black">{user?.name || "Learner"}</p>
+          <p className="text-xs font-bold text-black">{user?.email || "mira@example.com"}</p>
         </div>
 
         <Link
-          className="mt-2 flex items-center gap-3 rounded-xl px-3 py-2 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+          className="mt-2 flex items-center gap-3 border-4 border-transparent px-3 py-2 text-sm font-bold uppercase text-black transition hover:border-black hover:bg-[#FFD93D] hover:shadow-[4px_4px_0px_0px_#000]"
           to="/dashboard/profile"
         >
           <UserRound className="h-4 w-4" />
@@ -49,12 +49,12 @@ export function UserMenu({ user, onLogout }) {
         </Link>
 
         {isPreviewMode ? (
-          <div className="rounded-xl px-3 py-2 text-sm text-white/55">
+          <div className="px-3 py-2 text-sm font-bold text-black">
             Dashboard preview mode is active.
           </div>
         ) : (
           <button
-            className="flex w-full items-center gap-3 rounded-xl px-3 py-2 text-left text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+            className="flex w-full items-center gap-3 border-4 border-transparent px-3 py-2 text-left text-sm font-bold uppercase text-black transition hover:border-black hover:bg-[#FF6B6B] hover:shadow-[4px_4px_0px_0px_#000]"
             onClick={onLogout}
             type="button"
           >

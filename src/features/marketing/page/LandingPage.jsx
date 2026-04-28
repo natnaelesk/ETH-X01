@@ -10,7 +10,7 @@ import { TrustSection } from "../sections/TrustSection";
 
 export function LandingPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-black text-white">
+    <main className="neo-scope neo-grid-bg neo-noise-bg min-h-screen overflow-hidden">
       <div className="mx-auto flex w-full max-w-7xl flex-col px-4 pb-20 pt-8 sm:px-6 lg:px-8 lg:pb-28 lg:pt-12">
         <HeroSection />
         <TrustSection />

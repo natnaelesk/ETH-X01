@@ -1,18 +1,10 @@
 // src/components/HeroSection.jsx
-import React, { useEffect, useState } from "react";
-import { auth } from "../Firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../app/useAuth";
 
 const HeroSection = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const unsub = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-    return () => unsub();
-  }, []);
+  const { user } = useAuth();
 
   return (
     <section className="max-h-[60vh] flex justify-center items-center px-5 lg:grid lg:h-screen lg:place-content-center dark:bg-dark">

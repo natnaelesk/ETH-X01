@@ -1,55 +1,92 @@
-import { useEffect, useState } from "react";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { useCallback, useEffect, useState } from "react";
+import { login as loginRequest, signup as signupRequest } from "@/features/auth/api";
 
-import { auth, db } from "@/Firebase";
+const STORAGE_KEY = "ethx01.mock-session";
+const SESSION_EVENT = "ethx01:session-change";
+
+function readStoredSession() {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+function persistSession(session) {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  if (!session) {
+    window.localStorage.removeItem(STORAGE_KEY);
+    return;
+  }
+
+  window.localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+}
+
+function emitSessionChange() {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  window.dispatchEvent(new Event(SESSION_EVENT));
+}
 
 export function useAuth() {
-  const [user, setUser] = useState(null);
+  const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      if (!firebaseUser) {
-        setUser(null);
-        setLoading(false);
-        return;
-      }
+    setSession(readStoredSession());
+    setLoading(false);
 
-      try {
-        const userRef = doc(db, "users", firebaseUser.uid);
-        const snapshot = await getDoc(userRef);
-        const profile = snapshot.exists() ? snapshot.data() : {};
+    const syncSession = () => {
+      setSession(readStoredSession());
+    };
 
-        setUser({
-          uid: firebaseUser.uid,
-          name: profile.name || firebaseUser.displayName || "Learner",
-          email: profile.email || firebaseUser.email || "",
-          photoURL: profile.photoURL || firebaseUser.photoURL || "",
-          score: profile.score ?? 0,
-          role: profile.role || "member",
-        });
-      } catch (error) {
-        console.error("Failed to load auth profile:", error);
-        setUser({
-          uid: firebaseUser.uid,
-          name: firebaseUser.displayName || "Learner",
-          email: firebaseUser.email || "",
-          photoURL: firebaseUser.photoURL || "",
-          score: 0,
-          role: "member",
-        });
-      } finally {
-        setLoading(false);
-      }
-    });
+    window.addEventListener(SESSION_EVENT, syncSession);
+    window.addEventListener("storage", syncSession);
 
-    return () => unsubscribe();
+    return () => {
+      window.removeEventListener(SESSION_EVENT, syncSession);
+      window.removeEventListener("storage", syncSession);
+    };
   }, []);
 
+  const applySession = useCallback((nextSession) => {
+    persistSession(nextSession);
+    emitSessionChange();
+    setSession(nextSession);
+    return nextSession;
+  }, []);
+
+  const login = useCallback(async (credentials) => {
+    const nextSession = await loginRequest(credentials);
+    return applySession(nextSession);
+  }, [applySession]);
+
+  const signup = useCallback(async (credentials) => {
+    const nextSession = await signupRequest(credentials);
+    return applySession(nextSession);
+  }, [applySession]);
+
+  const logout = useCallback(() => {
+    applySession(null);
+  }, [applySession]);
+
   return {
-    user,
+    user: session?.user || null,
+    session,
     loading,
-    logout: () => signOut(auth),
+    isAuthenticated: Boolean(session?.user),
+    login,
+    signup,
+    logout,
   };
 }

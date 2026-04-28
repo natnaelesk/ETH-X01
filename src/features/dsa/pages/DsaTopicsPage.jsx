@@ -13,7 +13,7 @@ function TopicsSkeleton() {
   return (
     <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
       {Array.from({ length: 6 }).map((_, index) => (
-        <Skeleton key={index} className="h-[22rem] w-full rounded-[1.75rem] bg-white/6" />
+        <Skeleton key={index} className="h-[22rem] w-full border-4 border-black bg-[#FFD93D]" />
       ))}
     </div>
   );
@@ -28,14 +28,14 @@ export function DsaTopicsPage() {
   return (
     <div className="space-y-6">
       <PageHeader
-        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_24%),linear-gradient(180deg,#121212,#0d0d0d)] px-6 py-7 sm:px-8"
+        className="neo-panel relative overflow-hidden bg-[#FFD93D] px-6 py-7 sm:px-8"
         eyebrow="Learning"
         title="DSA Topics"
         description="Browse foundational and advanced topics with progress tracking and a clean, high-signal layout."
         actions={
-          <div className="flex items-center gap-2 rounded-2xl border border-white/10 bg-black/30 p-1">
+          <div className="flex items-center gap-2 border-4 border-black bg-white p-1 shadow-[4px_4px_0px_0px_#000]">
             <Button
-              className="rounded-xl border-0 bg-transparent text-white/72 hover:bg-white/5 hover:text-white data-[variant=secondary]:bg-white/[0.08]"
+              className="border-4 border-transparent bg-transparent font-black uppercase text-black hover:border-black hover:bg-[#FFD93D] hover:shadow-[4px_4px_0px_0px_#000] data-[variant=secondary]:border-black data-[variant=secondary]:bg-[#FF6B6B] data-[variant=secondary]:shadow-[4px_4px_0px_0px_#000]"
               onClick={() => setLayout("grid")}
               size="sm"
               variant={layout === "grid" ? "secondary" : "ghost"}
@@ -44,7 +44,7 @@ export function DsaTopicsPage() {
               Grid
             </Button>
             <Button
-              className="rounded-xl border-0 bg-transparent text-white/72 hover:bg-white/5 hover:text-white data-[variant=secondary]:bg-white/[0.08]"
+              className="border-4 border-transparent bg-transparent font-black uppercase text-black hover:border-black hover:bg-[#FFD93D] hover:shadow-[4px_4px_0px_0px_#000] data-[variant=secondary]:border-black data-[variant=secondary]:bg-[#FF6B6B] data-[variant=secondary]:shadow-[4px_4px_0px_0px_#000]"
               onClick={() => setLayout("list")}
               size="sm"
               variant={layout === "list" ? "secondary" : "ghost"}

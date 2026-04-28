@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import { SectionHeading } from "../components/SectionHeading";
 
 const highlightItems = [
@@ -20,29 +18,23 @@ export function FeatureHighlightSection() {
           description="Practice weekly DSA tracks, daily challenges, leaderboard competition, and beginner lessons in one clean workspace."
         />
 
-        <Link
-          className={cn(
-            buttonVariants(),
-            "mt-8 h-11 rounded-xl bg-white px-5 text-sm font-medium text-black hover:bg-white/90"
-          )}
-          to="/signup"
-        >
+        <Link className="neo-button mt-8 neo-focus-ring" to="/signup">
           Get Started
         </Link>
       </div>
 
-      <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-4 sm:p-6">
-        <div className="rounded-[1.5rem] border border-white/10 bg-black/70 p-4">
+      <div className="neo-panel rotate-[-1deg] bg-[#FFD93D] p-4 sm:p-6">
+        <div className="border-4 border-black bg-white p-4 shadow-[6px_6px_0px_0px_#000]">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-white/35">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-black">
                 Problem Workspace
               </p>
-              <h3 className="mt-2 text-xl font-semibold text-white">
+              <h3 className="mt-2 text-xl font-black uppercase text-black">
                 Today's Challenge
               </h3>
             </div>
-            <div className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/60">
+            <div className="neo-pill bg-[#C4B5FD]">
               Daily update
             </div>
           </div>
@@ -52,29 +44,29 @@ export function FeatureHighlightSection() {
               {highlightItems.map(([name, topic, level]) => (
                 <div
                   key={name}
-                  className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] px-4 py-4"
+                  className="border-4 border-black bg-[#FFFDF5] px-4 py-4 shadow-[4px_4px_0px_0px_#000]"
                 >
                   <div className="flex items-center justify-between gap-3">
-                    <p className="font-medium text-white">{name}</p>
-                    <span className="text-xs text-white/40">{level}</span>
+                    <p className="font-black uppercase text-black">{name}</p>
+                    <span className="text-xs font-black uppercase text-black">{level}</span>
                   </div>
-                  <p className="mt-2 text-sm text-white/50">{topic}</p>
+                  <p className="mt-2 text-sm font-bold text-black">{topic}</p>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-[1.25rem] border border-white/10 bg-white/[0.03] p-4">
+            <div className="border-4 border-black bg-[#C4B5FD] p-4 shadow-[4px_4px_0px_0px_#000]">
               <div className="flex items-center justify-between">
-                <p className="text-sm text-white/50">Challenge preview</p>
-                <span className="rounded-full border border-white/10 px-2.5 py-1 text-xs text-white/45">
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-black">Challenge preview</p>
+                <span className="neo-pill bg-white">
                   Python
                 </span>
               </div>
-              <div className="mt-4 rounded-[1rem] border border-white/10 bg-black p-4 font-mono text-sm leading-7 text-white/78">
-                <p className="text-white/35">def solve(graph):</p>
+              <div className="mt-4 border-4 border-black bg-black p-4 font-mono text-sm leading-7 text-[#FFFDF5] shadow-[4px_4px_0px_0px_#000]">
+                <p className="text-[#FFD93D]">def solve(graph):</p>
                 <p className="pl-4 text-white">visited = set()</p>
                 <p className="pl-4 text-white">queue = [0]</p>
-                <p className="pl-8 text-white/70"># breadth-first traversal</p>
+                <p className="pl-8 text-[#C4B5FD]"># breadth-first traversal</p>
                 <p className="pl-4 text-white">return visited</p>
               </div>
             </div>

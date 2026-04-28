@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { db, auth } from "../Firebase";
+import { db } from "../Firebase";
 import {
   collection,
   addDoc,
@@ -8,20 +8,18 @@ import {
   onSnapshot,
   serverTimestamp,
 } from "firebase/firestore";
-import { onAuthStateChanged } from "firebase/auth";
 import { Link } from "react-router-dom";
+import { useAuth } from "../app/useAuth";
 
 const DiscussionPanel = () => {
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const scrollRef = useRef(null);
   const isUserAtBottom = useRef(true);
+  const { user } = useAuth();
 
   useEffect(() => {
-    const unsubscribeAuth = onAuthStateChanged(auth, (u) => setUser(u));
-
     const q = query(collection(db, "discussion"), orderBy("createdAt", "asc"));
 
     const unsubscribeComments = onSnapshot(
@@ -52,7 +50,6 @@ const DiscussionPanel = () => {
     );
 
     return () => {
-      unsubscribeAuth();
       unsubscribeComments();
     };
   }, []);

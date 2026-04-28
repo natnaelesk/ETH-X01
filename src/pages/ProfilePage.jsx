@@ -1,48 +1,68 @@
 // src/pages/UserProfilePage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { auth, db } from "../Firebase";
+import { db } from "../Firebase";
 import { doc, getDoc } from "firebase/firestore";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useAuth } from "../app/useAuth";
 
 const UserProfilePage = () => {
   const { id } = useParams(); // If this exists, we're viewing someone else's profile
   const navigate = useNavigate();
+  const { user, logout } = useAuth();
   const [userData, setUserData] = useState(null);
-  const [authUser, setAuthUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [loggingOut, setLoggingOut] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      setAuthUser(user);
+    let cancelled = false;
 
-      if (!user && !id) {
-        setLoading(false);
+    const loadProfile = async () => {
+      setLoading(true);
+
+      if (!id) {
+        if (!cancelled) {
+          setUserData({
+            name: user?.name || "Guest Learner",
+            email: user?.email || "guest@ethx01.dev",
+            photoURL: user?.photoURL || "https://ui-avatars.com/api/?name=Guest+Learner&background=FF6B6B&color=000000",
+            score: user?.score ?? 0,
+            role: user?.role || "guest",
+            completedProblems: [],
+          });
+          setLoading(false);
+        }
         return;
       }
 
-      const userIdToFetch = id || user?.uid;
-
       try {
-        const userRef = doc(db, "users", userIdToFetch);
+        const userRef = doc(db, "users", id);
         const snap = await getDoc(userRef);
-        if (snap.exists()) {
-          setUserData(snap.data());
+        if (!cancelled) {
+          setUserData(snap.exists() ? snap.data() : null);
         }
       } catch (err) {
         console.error("Failed to fetch user data:", err);
+        if (!cancelled) {
+          setUserData(null);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
-      setLoading(false);
-    });
+    };
 
-    return () => unsubscribe();
-  }, [id]);
+    loadProfile();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [id, user]);
 
   const handleLogout = async () => {
     setLoggingOut(true);
     try {
-      await signOut(auth);
+      await logout();
       navigate("/login");
     } catch (err) {
       console.error("Logout failed:", err);
@@ -52,24 +72,6 @@ const UserProfilePage = () => {
 // Show loading while auth or data is being fetched
 if (loading) {
   return <div className="p-6 text-center text-light">Loading profile...</div>;
-}
-
-// Show access denied if user is not logged in and is trying to view their own profile
-if (!authUser && !id) {
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center text-center px-4">
-      <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-        Access Denied
-      </h2>
-      <p className="mb-4 text-gray-600 dark:text-gray-300">You must be signed in to view this profile.</p>
-      <button
-        onClick={() => navigate("/login")}
-        className="bg-primary text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition"
-      >
-        Sign In
-      </button>
-    </div>
-  );
 }
 
 // If user data wasn't found
@@ -94,7 +96,7 @@ if (!userData) {
               <p className="text-sm text-white/70 capitalize">
                 Role: {userData.role || "member"}
               </p>
-              {!id && (
+              {!id && user && (
                 <button
                   onClick={handleLogout}
                   disabled={loggingOut}
