@@ -3,39 +3,39 @@ import { Badge } from '../../../components/ui/badge'
 
 export function LeaderboardTable({ entries }) {
   return (
-    <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-black/45">
+    <div className="overflow-hidden border-4 border-black bg-white shadow-[8px_8px_0px_0px_#000]">
       <Table>
-        <TableHeader className="bg-white/[0.04]">
-          <TableRow className="border-white/10 hover:bg-transparent">
-            <TableHead className="px-4 py-4 text-xs font-medium uppercase tracking-[0.24em] text-white/45">Rank</TableHead>
-            <TableHead className="px-4 py-4 text-xs font-medium uppercase tracking-[0.24em] text-white/45">User</TableHead>
-            <TableHead className="px-4 py-4 text-xs font-medium uppercase tracking-[0.24em] text-white/45">Points</TableHead>
-            <TableHead className="px-4 py-4 text-xs font-medium uppercase tracking-[0.24em] text-white/45">Completed challenges</TableHead>
-            <TableHead className="px-4 py-4 text-xs font-medium uppercase tracking-[0.24em] text-white/45">Streak</TableHead>
+        <TableHeader className="bg-[#FFD93D]">
+          <TableRow className="border-b-4 border-black hover:bg-transparent">
+            <TableHead className="px-4 py-4 text-xs font-black uppercase tracking-[0.24em] text-black">Rank</TableHead>
+            <TableHead className="px-4 py-4 text-xs font-black uppercase tracking-[0.24em] text-black">User</TableHead>
+            <TableHead className="px-4 py-4 text-xs font-black uppercase tracking-[0.24em] text-black">Points</TableHead>
+            <TableHead className="px-4 py-4 text-xs font-black uppercase tracking-[0.24em] text-black">Completed challenges</TableHead>
+            <TableHead className="px-4 py-4 text-xs font-black uppercase tracking-[0.24em] text-black">Streak</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {entries.map((entry) => (
             <TableRow
               key={entry.rank}
-              className="border-white/10 text-white/72 transition hover:bg-white/[0.03]"
+              className="border-b-4 border-black text-black transition hover:bg-[#FFFDF5]"
             >
               <TableCell className="px-4 py-4">
                 <Badge
                   className={
                     entry.rank <= 3
-                      ? 'border-amber-300/30 bg-amber-300/15 text-amber-100'
-                      : 'border-white/10 bg-white/[0.05] text-white/72'
+                      ? 'rounded-full border-4 border-black bg-[#FF6B6B] text-black shadow-[4px_4px_0px_0px_#000]'
+                      : 'rounded-full border-4 border-black bg-white text-black shadow-[4px_4px_0px_0px_#000]'
                   }
                   variant="outline"
                 >
                   #{entry.rank}
                 </Badge>
               </TableCell>
-              <TableCell className="px-4 py-4 font-medium text-white">{entry.user}</TableCell>
-              <TableCell className="px-4 py-4 font-medium text-white/88">{entry.points.toLocaleString()}</TableCell>
-              <TableCell className="px-4 py-4 text-white/68">{entry.completed}</TableCell>
-              <TableCell className="px-4 py-4 text-white/68">{entry.streak} days</TableCell>
+              <TableCell className="px-4 py-4 font-black uppercase text-black">{entry.user}</TableCell>
+              <TableCell className="px-4 py-4 font-black uppercase text-black">{entry.points.toLocaleString()}</TableCell>
+              <TableCell className="px-4 py-4 font-bold text-black">{entry.completed}</TableCell>
+              <TableCell className="px-4 py-4 font-bold text-black">{entry.streak} days</TableCell>
             </TableRow>
           ))}
         </TableBody>
