@@ -1,15 +1,25 @@
-import { defineConfig } from "vite";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
 import react from "@vitejs/plugin-react";
-import path from "path";
+import { defineConfig } from "vite";
+
+const rootDir = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
   base: "./", // very important for vercel static asset paths
 
   resolve: {
-    alias: {
-      // eslint-disable-next-line no-undef
-      "@": path.resolve(__dirname, "./src"),
-    },
+    alias: [
+      {
+        find: "@/components",
+        replacement: path.resolve(rootDir, "./src/features/shared/components"),
+      },
+      {
+        find: "@",
+        replacement: path.resolve(rootDir, "./src"),
+      },
+    ],
   },
 });

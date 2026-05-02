@@ -1,7 +1,7 @@
 import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-export function AuthShell({ title, description, children }) {
+export function AuthShell({ children }) {
   return (
     <div className="neo-scope neo-grid-bg neo-noise-bg min-h-screen text-black">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-4 md:px-6 lg:py-6">
@@ -20,13 +20,7 @@ export function AuthShell({ title, description, children }) {
         </div>
 
         <div className="flex flex-1 items-center justify-center py-4">
-          <section className="w-full max-w-lg space-y-3">
-            <div className="neo-panel bg-[#FFD93D] px-6 py-5">
-              <h1 className="neo-display text-3xl md:text-4xl">{title}</h1>
-              <p className="mt-2 text-sm font-bold text-black">{description}</p>
-            </div>
-            {children}
-          </section>
+          <section className="w-full max-w-lg">{children}</section>
         </div>
       </div>
     </div>

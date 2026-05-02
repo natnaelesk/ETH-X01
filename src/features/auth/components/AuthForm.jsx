@@ -1,15 +1,13 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Button } from '../../../components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../components/ui/card'
-import { Input } from '../../../components/ui/input'
-import { Badge } from '../../../components/ui/badge'
-import { useAuth } from '../../../app/useAuth'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
 
 export function AuthForm({ mode }) {
   const navigate = useNavigate()
   const location = useLocation()
-  const { login, signup } = useAuth()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [form, setForm] = useState({
     name: '',
@@ -25,12 +23,6 @@ export function AuthForm({ mode }) {
     setIsSubmitting(true)
 
     try {
-      if (isSignup) {
-        await signup(form)
-      } else {
-        await login(form)
-      }
-
       navigate(destination, { replace: true })
     } finally {
       setIsSubmitting(false)
@@ -40,12 +32,6 @@ export function AuthForm({ mode }) {
   const handleSocialSignIn = async (provider) => {
     setIsSubmitting(true)
     try {
-      const payload = {
-        name: provider === 'google' ? 'Google Learner' : 'GitHub Learner',
-        email: provider === 'google' ? 'google.user@ethx01.dev' : 'github.user@ethx01.dev',
-        password: '',
-      }
-      await login(payload)
       navigate(destination, { replace: true })
     } finally {
       setIsSubmitting(false)
